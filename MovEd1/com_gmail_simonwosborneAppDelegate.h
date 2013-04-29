@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "com_gmail_simonwosborneViewController.h"
 @interface com_gmail_simonwosborneAppDelegate : UIResponder <UIApplicationDelegate>
 
+
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) com_gmail_simonwosborneViewController *com_gmail_simonwosborneViewController;
 
 @end

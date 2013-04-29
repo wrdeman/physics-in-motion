@@ -18,12 +18,22 @@
 		F4D17482172EE38F00169795 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D17481172EE38F00169795 /* Default-568h@2x.png */; };
 		F4D17485172EE38F00169795 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D17483172EE38F00169795 /* MainStoryboard_iPhone.storyboard */; };
 		F4D17488172EE38F00169795 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D17486172EE38F00169795 /* MainStoryboard_iPad.storyboard */; };
-		F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.m */; };
+		F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.mm */; };
 		F4D17493172EE39000169795 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D17492172EE39000169795 /* SenTestingKit.framework */; };
 		F4D17494172EE39000169795 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746B172EE38F00169795 /* UIKit.framework */; };
 		F4D17495172EE39000169795 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746D172EE38F00169795 /* Foundation.framework */; };
 		F4D1749D172EE39000169795 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4D1749B172EE39000169795 /* InfoPlist.strings */; };
 		F4D174A0172EE39000169795 /* MovEd1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D1749F172EE39000169795 /* MovEd1Tests.m */; };
+		F4D174B0172EE43000169795 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174A9172EE43000169795 /* Accelerate.framework */; };
+		F4D174B1172EE43000169795 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174AA172EE43000169795 /* AVFoundation.framework */; };
+		F4D174B2172EE43000169795 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174AB172EE43000169795 /* CoreImage.framework */; };
+		F4D174B3172EE43000169795 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174AC172EE43000169795 /* CoreVideo.framework */; };
+		F4D174B4172EE43000169795 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174AD172EE43000169795 /* libc++.1.dylib */; };
+		F4D174B5172EE43000169795 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174AE172EE43000169795 /* libc++.dylib */; };
+		F4D174B6172EE43000169795 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174AF172EE43000169795 /* QuartzCore.framework */; };
+		F4D174BB172EE84700169795 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174B9172EE84700169795 /* AssetsLibrary.framework */; };
+		F4D174BC172EE84700169795 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174BA172EE84700169795 /* CoreMedia.framework */; };
+		F4D174C0172EEF8000169795 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174BF172EEF8000169795 /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +63,23 @@
 		F4D17484172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		F4D17487172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		F4D17489172EE38F00169795 /* com_gmail_simonwosborneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_gmail_simonwosborneViewController.h; sourceTree = "<group>"; };
-		F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = com_gmail_simonwosborneViewController.m; sourceTree = "<group>"; };
+		F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = com_gmail_simonwosborneViewController.mm; sourceTree = "<group>"; };
 		F4D17491172EE39000169795 /* MovEd1Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovEd1Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D17492172EE39000169795 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F4D1749A172EE39000169795 /* MovEd1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MovEd1Tests-Info.plist"; sourceTree = "<group>"; };
 		F4D1749C172EE39000169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F4D1749E172EE39000169795 /* MovEd1Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovEd1Tests.h; sourceTree = "<group>"; };
 		F4D1749F172EE39000169795 /* MovEd1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovEd1Tests.m; sourceTree = "<group>"; };
+		F4D174A9172EE43000169795 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		F4D174AA172EE43000169795 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F4D174AB172EE43000169795 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		F4D174AC172EE43000169795 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F4D174AD172EE43000169795 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "usr/lib/libc++.1.dylib"; sourceTree = SDKROOT; };
+		F4D174AE172EE43000169795 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		F4D174AF172EE43000169795 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F4D174B9172EE84700169795 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		F4D174BA172EE84700169795 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F4D174BF172EEF8000169795 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../opencv_ios/opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +87,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D174C0172EEF8000169795 /* opencv2.framework in Frameworks */,
+				F4D174BB172EE84700169795 /* AssetsLibrary.framework in Frameworks */,
+				F4D174BC172EE84700169795 /* CoreMedia.framework in Frameworks */,
+				F4D174B0172EE43000169795 /* Accelerate.framework in Frameworks */,
+				F4D174B1172EE43000169795 /* AVFoundation.framework in Frameworks */,
+				F4D174B2172EE43000169795 /* CoreImage.framework in Frameworks */,
+				F4D174B3172EE43000169795 /* CoreVideo.framework in Frameworks */,
+				F4D174B4172EE43000169795 /* libc++.1.dylib in Frameworks */,
+				F4D174B5172EE43000169795 /* libc++.dylib in Frameworks */,
+				F4D174B6172EE43000169795 /* QuartzCore.framework in Frameworks */,
 				F4D1746C172EE38F00169795 /* UIKit.framework in Frameworks */,
 				F4D1746E172EE38F00169795 /* Foundation.framework in Frameworks */,
 				F4D17470172EE38F00169795 /* CoreGraphics.framework in Frameworks */,
@@ -108,6 +138,16 @@
 		F4D1746A172EE38F00169795 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4D174BF172EEF8000169795 /* opencv2.framework */,
+				F4D174B9172EE84700169795 /* AssetsLibrary.framework */,
+				F4D174BA172EE84700169795 /* CoreMedia.framework */,
+				F4D174A9172EE43000169795 /* Accelerate.framework */,
+				F4D174AA172EE43000169795 /* AVFoundation.framework */,
+				F4D174AB172EE43000169795 /* CoreImage.framework */,
+				F4D174AC172EE43000169795 /* CoreVideo.framework */,
+				F4D174AD172EE43000169795 /* libc++.1.dylib */,
+				F4D174AE172EE43000169795 /* libc++.dylib */,
+				F4D174AF172EE43000169795 /* QuartzCore.framework */,
 				F4D1746B172EE38F00169795 /* UIKit.framework */,
 				F4D1746D172EE38F00169795 /* Foundation.framework */,
 				F4D1746F172EE38F00169795 /* CoreGraphics.framework */,
@@ -124,7 +164,7 @@
 				F4D17483172EE38F00169795 /* MainStoryboard_iPhone.storyboard */,
 				F4D17486172EE38F00169795 /* MainStoryboard_iPad.storyboard */,
 				F4D17489172EE38F00169795 /* com_gmail_simonwosborneViewController.h */,
-				F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.m */,
+				F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.mm */,
 				F4D17472172EE38F00169795 /* Supporting Files */,
 			);
 			path = MovEd1;
@@ -277,7 +317,7 @@
 			files = (
 				F4D17478172EE38F00169795 /* main.m in Sources */,
 				F4D1747C172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.m in Sources */,
-				F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.m in Sources */,
+				F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,10 +436,16 @@
 		F4D174A4172EE39000169795 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
+				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,10 +453,16 @@
 		F4D174A5172EE39000169795 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
+				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -468,6 +520,7 @@
 				F4D174A5172EE39000169795 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4D174A6172EE39000169795 /* Build configuration list for PBXNativeTarget "MovEd1Tests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +529,7 @@
 				F4D174A8172EE39000169795 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
