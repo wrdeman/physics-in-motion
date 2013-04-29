@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4D1746C172EE38F00169795 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746B172EE38F00169795 /* UIKit.framework */; };
+		F4D1746E172EE38F00169795 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746D172EE38F00169795 /* Foundation.framework */; };
+		F4D17470172EE38F00169795 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746F172EE38F00169795 /* CoreGraphics.framework */; };
+		F4D17476172EE38F00169795 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4D17474172EE38F00169795 /* InfoPlist.strings */; };
+		F4D17478172EE38F00169795 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D17477172EE38F00169795 /* main.m */; };
+		F4D1747C172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D1747B172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.m */; };
+		F4D1747E172EE38F00169795 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D1747D172EE38F00169795 /* Default.png */; };
+		F4D17480172EE38F00169795 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D1747F172EE38F00169795 /* Default@2x.png */; };
+		F4D17482172EE38F00169795 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D17481172EE38F00169795 /* Default-568h@2x.png */; };
+		F4D17485172EE38F00169795 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D17483172EE38F00169795 /* MainStoryboard_iPhone.storyboard */; };
+		F4D17488172EE38F00169795 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D17486172EE38F00169795 /* MainStoryboard_iPad.storyboard */; };
+		F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.m */; };
+		F4D17493172EE39000169795 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D17492172EE39000169795 /* SenTestingKit.framework */; };
+		F4D17494172EE39000169795 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746B172EE38F00169795 /* UIKit.framework */; };
+		F4D17495172EE39000169795 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746D172EE38F00169795 /* Foundation.framework */; };
+		F4D1749D172EE39000169795 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4D1749B172EE39000169795 /* InfoPlist.strings */; };
+		F4D174A0172EE39000169795 /* MovEd1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D1749F172EE39000169795 /* MovEd1Tests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4D17496172EE39000169795 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4D17460172EE38F00169795 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D17467172EE38F00169795;
+			remoteInfo = MovEd1;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F4D17468172EE38F00169795 /* MovEd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovEd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D1746B172EE38F00169795 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F4D1746D172EE38F00169795 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F4D1746F172EE38F00169795 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F4D17473172EE38F00169795 /* MovEd1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MovEd1-Info.plist"; sourceTree = "<group>"; };
+		F4D17475172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F4D17477172EE38F00169795 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F4D17479172EE38F00169795 /* MovEd1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MovEd1-Prefix.pch"; sourceTree = "<group>"; };
+		F4D1747A172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_gmail_simonwosborneAppDelegate.h; sourceTree = "<group>"; };
+		F4D1747B172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = com_gmail_simonwosborneAppDelegate.m; sourceTree = "<group>"; };
+		F4D1747D172EE38F00169795 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F4D1747F172EE38F00169795 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F4D17481172EE38F00169795 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F4D17484172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		F4D17487172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		F4D17489172EE38F00169795 /* com_gmail_simonwosborneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_gmail_simonwosborneViewController.h; sourceTree = "<group>"; };
+		F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = com_gmail_simonwosborneViewController.m; sourceTree = "<group>"; };
+		F4D17491172EE39000169795 /* MovEd1Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovEd1Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D17492172EE39000169795 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F4D1749A172EE39000169795 /* MovEd1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MovEd1Tests-Info.plist"; sourceTree = "<group>"; };
+		F4D1749C172EE39000169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F4D1749E172EE39000169795 /* MovEd1Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovEd1Tests.h; sourceTree = "<group>"; };
+		F4D1749F172EE39000169795 /* MovEd1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovEd1Tests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4D17465172EE38F00169795 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D1746C172EE38F00169795 /* UIKit.framework in Frameworks */,
+				F4D1746E172EE38F00169795 /* Foundation.framework in Frameworks */,
+				F4D17470172EE38F00169795 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D1748D172EE39000169795 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D17493172EE39000169795 /* SenTestingKit.framework in Frameworks */,
+				F4D17494172EE39000169795 /* UIKit.framework in Frameworks */,
+				F4D17495172EE39000169795 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4D1745F172EE38F00169795 = {
+			isa = PBXGroup;
+			children = (
+				F4D17471172EE38F00169795 /* MovEd1 */,
+				F4D17498172EE39000169795 /* MovEd1Tests */,
+				F4D1746A172EE38F00169795 /* Frameworks */,
+				F4D17469172EE38F00169795 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4D17469172EE38F00169795 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4D17468172EE38F00169795 /* MovEd1.app */,
+				F4D17491172EE39000169795 /* MovEd1Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4D1746A172EE38F00169795 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1746B172EE38F00169795 /* UIKit.framework */,
+				F4D1746D172EE38F00169795 /* Foundation.framework */,
+				F4D1746F172EE38F00169795 /* CoreGraphics.framework */,
+				F4D17492172EE39000169795 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4D17471172EE38F00169795 /* MovEd1 */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1747A172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.h */,
+				F4D1747B172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.m */,
+				F4D17483172EE38F00169795 /* MainStoryboard_iPhone.storyboard */,
+				F4D17486172EE38F00169795 /* MainStoryboard_iPad.storyboard */,
+				F4D17489172EE38F00169795 /* com_gmail_simonwosborneViewController.h */,
+				F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.m */,
+				F4D17472172EE38F00169795 /* Supporting Files */,
+			);
+			path = MovEd1;
+			sourceTree = "<group>";
+		};
+		F4D17472172EE38F00169795 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4D17473172EE38F00169795 /* MovEd1-Info.plist */,
+				F4D17474172EE38F00169795 /* InfoPlist.strings */,
+				F4D17477172EE38F00169795 /* main.m */,
+				F4D17479172EE38F00169795 /* MovEd1-Prefix.pch */,
+				F4D1747D172EE38F00169795 /* Default.png */,
+				F4D1747F172EE38F00169795 /* Default@2x.png */,
+				F4D17481172EE38F00169795 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F4D17498172EE39000169795 /* MovEd1Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1749E172EE39000169795 /* MovEd1Tests.h */,
+				F4D1749F172EE39000169795 /* MovEd1Tests.m */,
+				F4D17499172EE39000169795 /* Supporting Files */,
+			);
+			path = MovEd1Tests;
+			sourceTree = "<group>";
+		};
+		F4D17499172EE39000169795 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1749A172EE39000169795 /* MovEd1Tests-Info.plist */,
+				F4D1749B172EE39000169795 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4D17467172EE38F00169795 /* MovEd1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4D174A3172EE39000169795 /* Build configuration list for PBXNativeTarget "MovEd1" */;
+			buildPhases = (
+				F4D17464172EE38F00169795 /* Sources */,
+				F4D17465172EE38F00169795 /* Frameworks */,
+				F4D17466172EE38F00169795 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MovEd1;
+			productName = MovEd1;
+			productReference = F4D17468172EE38F00169795 /* MovEd1.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4D17490172EE39000169795 /* MovEd1Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4D174A6172EE39000169795 /* Build configuration list for PBXNativeTarget "MovEd1Tests" */;
+			buildPhases = (
+				F4D1748C172EE39000169795 /* Sources */,
+				F4D1748D172EE39000169795 /* Frameworks */,
+				F4D1748E172EE39000169795 /* Resources */,
+				F4D1748F172EE39000169795 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4D17497172EE39000169795 /* PBXTargetDependency */,
+			);
+			name = MovEd1Tests;
+			productName = MovEd1Tests;
+			productReference = F4D17491172EE39000169795 /* MovEd1Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4D17460172EE38F00169795 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = com.gmail.simonwosborne;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Simon Osborne";
+			};
+			buildConfigurationList = F4D17463172EE38F00169795 /* Build configuration list for PBXProject "MovEd1" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F4D1745F172EE38F00169795;
+			productRefGroup = F4D17469172EE38F00169795 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4D17467172EE38F00169795 /* MovEd1 */,
+				F4D17490172EE39000169795 /* MovEd1Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4D17466172EE38F00169795 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D17476172EE38F00169795 /* InfoPlist.strings in Resources */,
+				F4D1747E172EE38F00169795 /* Default.png in Resources */,
+				F4D17480172EE38F00169795 /* Default@2x.png in Resources */,
+				F4D17482172EE38F00169795 /* Default-568h@2x.png in Resources */,
+				F4D17485172EE38F00169795 /* MainStoryboard_iPhone.storyboard in Resources */,
+				F4D17488172EE38F00169795 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D1748E172EE39000169795 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D1749D172EE39000169795 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F4D1748F172EE39000169795 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4D17464172EE38F00169795 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D17478172EE38F00169795 /* main.m in Sources */,
+				F4D1747C172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.m in Sources */,
+				F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D1748C172EE39000169795 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D174A0172EE39000169795 /* MovEd1Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4D17497172EE39000169795 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4D17467172EE38F00169795 /* MovEd1 */;
+			targetProxy = F4D17496172EE39000169795 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F4D17474172EE38F00169795 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4D17475172EE38F00169795 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F4D17483172EE38F00169795 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4D17484172EE38F00169795 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		F4D17486172EE38F00169795 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4D17487172EE38F00169795 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		F4D1749B172EE39000169795 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4D1749C172EE39000169795 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4D174A1172EE39000169795 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F4D174A2172EE39000169795 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4D174A4172EE39000169795 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F4D174A5172EE39000169795 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F4D174A7172EE39000169795 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MovEd1.app/MovEd1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				INFOPLIST_FILE = "MovEd1Tests/MovEd1Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F4D174A8172EE39000169795 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MovEd1.app/MovEd1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				INFOPLIST_FILE = "MovEd1Tests/MovEd1Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4D17463172EE38F00169795 /* Build configuration list for PBXProject "MovEd1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D174A1172EE39000169795 /* Debug */,
+				F4D174A2172EE39000169795 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4D174A3172EE39000169795 /* Build configuration list for PBXNativeTarget "MovEd1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D174A4172EE39000169795 /* Debug */,
+				F4D174A5172EE39000169795 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F4D174A6172EE39000169795 /* Build configuration list for PBXNativeTarget "MovEd1Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D174A7172EE39000169795 /* Debug */,
+				F4D174A8172EE39000169795 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4D17460172EE38F00169795 /* Project object */;
+}
