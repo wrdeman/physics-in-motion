@@ -18,8 +18,6 @@ using namespace cv;
 
 @interface com_gmail_simonwosborneViewController : UIViewController<CvVideoCameraDelegate,UIGestureRecognizerDelegate>
 {
-    //    UIImageView *imageView;
-    //    UIImageView *imageView1;
     CvVideoCamera* videoCamera;
     IBOutlet UIImageView *imageView1;
 }
@@ -30,10 +28,14 @@ using namespace cv;
 @property (strong, nonatomic) NSMutableArray *pos;
 @property (nonatomic, assign) BOOL newPoints;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView1;
-//@property (weak, nonatomic) IBOutlet UIImageView *imageView1;
+
 @property (nonatomic) Mat previous;
 -(void) addPoint;
 -(void) deletePoint;
 -(void) startVideo;
 -(void) stopVideo;
+- (BOOL)shouldAutorotate:(UIInterfaceOrientation)interfaceOrientation;
+-(UIDeviceOrientation)interfaceOrientation;
+-(NSInteger)supportedInterfaceOrientations;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 @end
