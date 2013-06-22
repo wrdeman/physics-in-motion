@@ -22,11 +22,28 @@
                             <constraint firstItem="TUP-1V-gWE" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="vU2-Jv-EFC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView1" destination="TUP-1V-gWE" id="ycn-X3-uLn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="com_gmail_simonwosborneViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/com_gmail_simonwosborneViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="actionStart:"/>
+                <relationship kind="action" name="startVideo:"/>
+                <relationship kind="action" name="stopVideo:"/>
+                <relationship kind="outlet" name="imageView1" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

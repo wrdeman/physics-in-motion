@@ -7,6 +7,10 @@
 //
 
 #import "com_gmail_simonwosborneViewController.h"
+
+#define SCALING_FACTOR_X (1024.0/480.0)
+#define SCALING_FACTOR_Y (768.0/360.0)
+
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -41,6 +45,15 @@ using namespace std;
     [self.pos removeLastObject];
     self.newPoints=false;
 }
+
+- (BOOL) isPad
+{
+#ifdef UI_USER_INTERFACE_IDIOM
+    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+#endif
+    return NO;
+}
+
 #pragma mark - UI Actions
 - (IBAction)startVideo:(id)sender {
     [self.videoCamera start];
@@ -87,7 +100,6 @@ using namespace std;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
     self.pos = [[NSMutableArray alloc] init];
-    
 }
 - (void)viewDidUnload
 {
@@ -123,11 +135,20 @@ using namespace std;
     TermCriteria termcrit(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS,20,0.03);
     cv::Size subPixWinSize(10,10), winSize(31,31);
     int numPts2=[self.pos count]; //number of points is half pos array
-    NSLog(@"points = %i ", numPts2);
+    
+    NSLog(@"IPAD? ", [self isPad]);
+    
+
+//    NSLog(@"points = %i ", numPts2);
     if (self.previous.empty())
     {
         self.previous=gray;
     }
+
+    int maxx=0;
+    int minx=10000;
+    int maxy=0;
+    int miny=10000;
     
     if ((numPts2)/2!=0)
     {
@@ -135,8 +156,12 @@ using namespace std;
         {
             //c++ vector for points
             vector<Point2f> tmp;
-            float x=[[self.pos objectAtIndex:2*i] floatValue];
+            float x=[[self.pos objectAtIndex:2*i] floatValue]; //these are the ipad points
             float y=[[self.pos objectAtIndex:2*i+1] floatValue];
+            if (x<minx){minx=int(x);}
+            if (x>maxx){maxx=int(x);}
+            if (y<miny){miny=int(y);}
+            if (y>maxy){maxy=int(y);}
             point = Point2f(float(x),float(y));
             tmp.push_back(point);
             //if a new point the find corners
@@ -183,8 +208,42 @@ using namespace std;
     }
     self.previous=gray;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    int leny,lenx;
+    cv::Size cvwidlen=image.size();
+    
+    lenx=int((cvwidlen.width-0)/2);
+    leny=int((cvwidlen.height-0)/4);
+
+    
+//#opencv lengths of axis
+    int dx = int((lenx+lenx*0.9)-lenx);
+    int dy = int(leny - (leny*0.1));
+//#define axis
+    cv::line(image,Point2f(lenx,(leny*0.1)),Point2f(lenx,leny),(255,0,0),2);
+    cv::line(image,Point2f(lenx,leny),Point2f(lenx+(lenx*0.9),leny),(255,0,0),2);
+ 
+    circle( image, Point2f(0,0), 3, Scalar(0,255,0), -1, 8);
+    circle( image, Point2f(0,leny*4), 3, Scalar(0,255,255), -1, 8);
+    circle( image, Point2f(lenx*2,0), 3, Scalar(0,255,0), -1, 8);
+    circle( image, Point2f(lenx*2,leny*4), 3, Scalar(255,255,255), -1, 8);
     
     
+
+//    int xdat,ydat,x_cv1,y_cv1,x_cv2,y_cv2;
+//    if ((numPts2/2) > 1){
+//    for (int i=0;i<(numPts2/2-1);i++){
+//        xdat=points[0][i].x;
+//        xdat=points[0][i].y;
+//        x_cv1 = int(((xdat-minx)/(maxx-minx))*dx+lenx);
+//        y_cv1 = int(((ydat-miny)/(maxy-miny))*dy+leny*0.1);
+//        xdat=points[0][i+1].x;
+//        ydat=points[0][i+1].y;
+//        x_cv2 = int(((xdat-minx)/(maxx-minx))*dx+lenx);
+//        y_cv2 = int(((ydat-miny)/(maxy-miny))*dy+leny*0.1);
+//        cv::line(image,Point2f(int(x_cv1),int(y_cv1)),Point2f(int(x_cv2),int(y_cv2)),(255,0,0),2);
+//    }
+//}
+
     image=image;
 }
 #endif
