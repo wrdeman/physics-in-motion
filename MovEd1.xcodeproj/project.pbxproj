@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4C7E4C017D10F56008C40B9 /* PlotPoints.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C7E4BE17D10F56008C40B9 /* PlotPoints.cpp */; };
+		F4C82EFA17CF74A800C887C4 /* CVPlotting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4C82EF817CF74A800C887C4 /* CVPlotting.cpp */; };
 		F4D1746C172EE38F00169795 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746B172EE38F00169795 /* UIKit.framework */; };
 		F4D1746E172EE38F00169795 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746D172EE38F00169795 /* Foundation.framework */; };
 		F4D17470172EE38F00169795 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D1746F172EE38F00169795 /* CoreGraphics.framework */; };
@@ -34,6 +36,7 @@
 		F4D174BB172EE84700169795 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174B9172EE84700169795 /* AssetsLibrary.framework */; };
 		F4D174BC172EE84700169795 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174BA172EE84700169795 /* CoreMedia.framework */; };
 		F4D174C0172EEF8000169795 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174BF172EEF8000169795 /* opencv2.framework */; };
+		F4E0774617CBF9C50043FC7B /* CVProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E0774417CBF9C50043FC7B /* CVProcessing.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F4C7E4BE17D10F56008C40B9 /* PlotPoints.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlotPoints.cpp; path = ../PlotPoints.cpp; sourceTree = "<group>"; };
+		F4C7E4BF17D10F56008C40B9 /* PlotPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlotPoints.h; path = ../PlotPoints.h; sourceTree = "<group>"; };
+		F4C82EF817CF74A800C887C4 /* CVPlotting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CVPlotting.cpp; path = ../CVPlotting.cpp; sourceTree = "<group>"; };
+		F4C82EF917CF74A800C887C4 /* CVPlotting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CVPlotting.h; path = ../CVPlotting.h; sourceTree = "<group>"; };
 		F4D17468172EE38F00169795 /* MovEd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovEd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D1746B172EE38F00169795 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F4D1746D172EE38F00169795 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,8 +67,8 @@
 		F4D1747D172EE38F00169795 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F4D1747F172EE38F00169795 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F4D17481172EE38F00169795 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F4D17484172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		F4D17487172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		F4D17484172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		F4D17487172EE38F00169795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		F4D17489172EE38F00169795 /* com_gmail_simonwosborneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_gmail_simonwosborneViewController.h; sourceTree = "<group>"; };
 		F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = com_gmail_simonwosborneViewController.mm; sourceTree = "<group>"; };
 		F4D17491172EE39000169795 /* MovEd1Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovEd1Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +87,8 @@
 		F4D174B9172EE84700169795 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F4D174BA172EE84700169795 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		F4D174BF172EEF8000169795 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../opencv_ios/opencv2.framework; sourceTree = "<group>"; };
+		F4E0774417CBF9C50043FC7B /* CVProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVProcessing.cpp; sourceTree = "<group>"; };
+		F4E0774517CBF9C50043FC7B /* CVProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVProcessing.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +174,12 @@
 				F4D17486172EE38F00169795 /* MainStoryboard_iPad.storyboard */,
 				F4D17489172EE38F00169795 /* com_gmail_simonwosborneViewController.h */,
 				F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.mm */,
+				F4E0774417CBF9C50043FC7B /* CVProcessing.cpp */,
+				F4E0774517CBF9C50043FC7B /* CVProcessing.h */,
+				F4C82EF817CF74A800C887C4 /* CVPlotting.cpp */,
+				F4C82EF917CF74A800C887C4 /* CVPlotting.h */,
+				F4C7E4BE17D10F56008C40B9 /* PlotPoints.cpp */,
+				F4C7E4BF17D10F56008C40B9 /* PlotPoints.h */,
 				F4D17472172EE38F00169795 /* Supporting Files */,
 			);
 			path = MovEd1;
@@ -318,6 +333,9 @@
 				F4D17478172EE38F00169795 /* main.m in Sources */,
 				F4D1747C172EE38F00169795 /* com_gmail_simonwosborneAppDelegate.m in Sources */,
 				F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.mm in Sources */,
+				F4E0774617CBF9C50043FC7B /* CVProcessing.cpp in Sources */,
+				F4C82EFA17CF74A800C887C4 /* CVPlotting.cpp in Sources */,
+				F4C7E4C017D10F56008C40B9 /* PlotPoints.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +454,8 @@
 		F4D174A4172EE39000169795 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Simon Osborne (49VK8RZYQB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -444,6 +464,8 @@
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
 				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				WRAPPER_EXTENSION = app;
@@ -453,6 +475,8 @@
 		F4D174A5172EE39000169795 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Simon Osborne (49VK8RZYQB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -461,6 +485,8 @@
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
 				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				WRAPPER_EXTENSION = app;
@@ -471,12 +497,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MovEd1.app/MovEd1";
+				CLANG_CXX_LIBRARY = "libc++";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MovEd1Tests/MovEd1Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -488,12 +516,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MovEd1.app/MovEd1";
+				CLANG_CXX_LIBRARY = "libc++";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MovEd1Tests/MovEd1Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

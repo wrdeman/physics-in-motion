@@ -12,6 +12,7 @@
 #import "opencv2/highgui/highgui.hpp"
 #import "opencv2/imgproc/imgproc.hpp"
 #import "opencv2/video/tracking.hpp"
+#include "CVPlotting.h"
 
 using namespace cv;
 
@@ -25,17 +26,19 @@ using namespace cv;
 
 
 @property (nonatomic, retain) CvVideoCamera* videoCamera;
-@property (strong, nonatomic) NSMutableArray *pos;
+//@property (strong, nonatomic) NSMutableArray *pos;
 @property (nonatomic, assign) BOOL newPoints;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView1;
+@property (nonatomic, assign) CVPlotting * process;
+@property (nonatomic, retain) CALayer *customPreviewLayer;
 
 @property (nonatomic) Mat previous;
 -(void) addPoint;
 -(void) deletePoint;
 -(void) startVideo;
 -(void) stopVideo;
-- (BOOL)shouldAutorotate:(UIInterfaceOrientation)interfaceOrientation;
--(UIDeviceOrientation)interfaceOrientation;
--(NSInteger)supportedInterfaceOrientations;
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
+
+//-(BOOL)shouldAutorotate;
+//-(NSInteger)supportedInterfaceOrientations;
+
 @end

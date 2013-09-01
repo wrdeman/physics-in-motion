@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -12,13 +12,28 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUP-1V-gWE"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUP-1V-gWE" propertyAccessControl="localizable">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="769" type="user" id="tk4-o6-Hn1"/>
+                                </constraints>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="D8Q-G4-w0n">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="219" id="BMU-JM-eT3"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Play"/>
+                                    <segment title="Camera"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TUP-1V-gWE" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="Bn2-FW-e5F"/>
+                            <constraint firstItem="TUP-1V-gWE" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="user" id="Bn2-FW-e5F"/>
+                            <constraint firstItem="D8Q-G4-w0n" firstAttribute="centerX" secondItem="TUP-1V-gWE" secondAttribute="centerX" type="user" id="Hq8-jI-S32"/>
+                            <constraint firstAttribute="bottom" secondItem="D8Q-G4-w0n" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="PLL-ti-fau"/>
                             <constraint firstItem="TUP-1V-gWE" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="b2n-Gc-k3l"/>
-                            <constraint firstItem="TUP-1V-gWE" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="dhK-85-U2e"/>
+                            <constraint firstItem="D8Q-G4-w0n" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="user" id="tXu-uS-WzY"/>
                             <constraint firstItem="TUP-1V-gWE" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="vU2-Jv-EFC"/>
                         </constraints>
                     </view>
@@ -28,6 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1616" y="-954"/>
         </scene>
     </scenes>
     <classes>
