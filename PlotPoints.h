@@ -25,7 +25,7 @@ public:
     PlotPoints(std::string name[], float vals[]);
     void setData(std::string name[], float vals[]);
     void replace(std::string name, float vals);
-    int getParam(std::string x);
+    float getParam(std::string x);
 };
 
 #endif /* defined(__MovEd1__PlotPoints__) */

@@ -29,11 +29,14 @@ using namespace std;
 
 @implementation com_gmail_simonwosborneViewController
 @synthesize imageView1;
+@synthesize btnStart;
+@synthesize btnPauseStart;
+@synthesize btnCamera;
 @synthesize videoCamera;
 @synthesize process;
 @synthesize newPoints;
-@synthesize previous;
-
+@synthesize runVideo;
+@synthesize plotModifierValue;
 
 #pragma - Private Methods
 - (void) addPoint:(UITapGestureRecognizer *)recognizer
@@ -54,6 +57,42 @@ using namespace std;
     self.process->cvDeletePoint();
 }
 
+-(void) plotModifier:(UISwipeGestureRecognizer *)gesture
+{
+/*  get the gesture and assign a value
+    positions of plot are
+    -----
+    |1|2|
+    -----
+    |3|4|
+    -----
+*/
+    if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
+    {
+        if (self.plotModifierValue%2 == 0){
+            self.plotModifierValue -= 1;
+        }
+    }
+    else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        if (self.plotModifierValue%2 == 1){
+            self.plotModifierValue += 1;
+        }
+    }
+    if (gesture.direction == UISwipeGestureRecognizerDirectionUp)
+    {
+        if (self.plotModifierValue >=3){
+            self.plotModifierValue -= 2;
+        }
+    }
+    else if (gesture.direction == UISwipeGestureRecognizerDirectionDown)
+    {
+        if (self.plotModifierValue <=2){
+            self.plotModifierValue += 2;
+        }
+    }
+}
+
 - (BOOL) isPad
 {
 #ifdef UI_USER_INTERFACE_IDIOM
@@ -63,19 +102,42 @@ using namespace std;
 }
 
 #pragma mark - UI Actions
-- (IBAction)startVideo:(id)sender {
+
+- (IBAction)star:(id)sender {
+}
+
+- (IBAction)actionStart:(id)sender {
     [self.videoCamera start];
+    self.btnStart.hidden = YES;
+    self.btnPauseStart.hidden = FALSE;
+    self.runVideo = TRUE;
 }
-- (IBAction)stopVideo:(id)sender {
-    [self.videoCamera stop];
+
+- (IBAction)actionStopStart:(id)sender {
+    if (self.runVideo){
+        [self.videoCamera stop];
+        self.runVideo = FALSE;
+        [btnPauseStart setImage:[UIImage imageNamed:@"playone.png"] forState:UIControlStateNormal];
+    }
+    else{
+        [self.videoCamera start];
+        self.runVideo = TRUE;
+        [btnPauseStart setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+
+    }
 }
+
+- (IBAction)actionCamera:(id)sender {
+    [self.videoCamera switchCameras];
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     //Instantiate a tap gesture recognizer
-    self.newPoints=false;
+    self.newPoints = false;
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPoint:)];
     singleTap.numberOfTapsRequired = 1;
@@ -90,15 +152,25 @@ using namespace std;
     [singleTap requireGestureRecognizerToFail:doubleTap];
     doubleTap.delegate = self;
     
-    UISwipeGestureRecognizer *leftSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(startVideo:)];
+    UISwipeGestureRecognizer *leftSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
     leftSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:leftSwipe];
     leftSwipe.delegate=self;
     
-    UISwipeGestureRecognizer *rightSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(stopVideo:)];
+    UISwipeGestureRecognizer *rightSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
     rightSwipe.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:rightSwipe];
     rightSwipe.delegate=self;
+
+    UISwipeGestureRecognizer *upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
+    upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:upSwipe];
+    upSwipe.delegate=self;
+    
+    UISwipeGestureRecognizer *downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
+    downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:downSwipe];
+    downSwipe.delegate=self;
     
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:imageView1];
     self.videoCamera.delegate=self;
@@ -111,6 +183,7 @@ using namespace std;
     //self.videoCamera.videoCaptureConnection.supportsVideoOrientation =
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
+    self.plotModifierValue = 2;
     //self.pos = [[NSMutableArray alloc] init];
  
     self.process = new CVPlotting();
@@ -143,12 +216,10 @@ using namespace std;
     self.newPoints = false;
     if (self.process->cvTrackedPoints()>0){
         self.process->setPlotPoints();
-        self.process->plotData(image);
+        self.process->plotData(image,self.plotModifierValue);
     }
-    // cv::circle(image, cv::Point2f(10,10), 5, cv::Scalar(0,255,0), -1, 8);
-  //  image = self.process->testCV(image);
-
 }
 #endif
+
 
 @end

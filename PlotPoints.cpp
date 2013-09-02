@@ -33,7 +33,7 @@ void PlotPoints::replace(std::string name, float val)
     PlotPoints::points[name] = val;
 }
 
-int PlotPoints::getParam(std::string x){
+float PlotPoints::getParam(std::string x){
     return PlotPoints::points.find(x)->second;
 }
 

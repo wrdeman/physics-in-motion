@@ -22,11 +22,12 @@ class CVPlotting: public CVProcessing
 private:
     PlotPoints::PlotPoints * maxPoints;
     PlotPoints::PlotPoints * minPoints;
+    cv::Point transformPlot(float x, float y, float dx, float dy, float xx2, float yy2);
     
 public:
     CVPlotting();
     void setPlotPoints();
-    void plotData(cv::Mat image);    
+    void plotData(cv::Mat image, int plotPosition);    
     
     std::vector<PlotPoints::PlotPoints*> plotPoints;
     

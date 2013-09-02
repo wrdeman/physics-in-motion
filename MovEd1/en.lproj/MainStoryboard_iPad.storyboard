@@ -7,45 +7,123 @@
         <!--Com gmail simonwosborne View Controller-->
         <scene sceneID="4">
             <objects>
-                <viewController id="2" customClass="com_gmail_simonwosborneViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5">
+                <viewController id="2" customClass="com_gmail_simonwosborneViewController" propertyAccessControl="none" sceneMemberID="viewController">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUP-1V-gWE" propertyAccessControl="localizable">
+                            <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUP-1V-gWE" colorLabel="IBBuiltInLabel-Red">
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="769" type="user" id="tk4-o6-Hn1"/>
+                                    <constraint firstAttribute="width" constant="768" type="user" id="0j0-pa-zwz"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1000" type="user" id="PHY-eH-nYU"/>
+                                    <constraint firstAttribute="height" constant="1000" type="user" id="ita-R0-BqL"/>
                                 </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="D8Q-G4-w0n">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gay-1W-OqY">
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="219" id="BMU-JM-eT3"/>
+                                    <constraint firstAttribute="width" constant="73" id="uu3-jE-izC"/>
                                 </constraints>
-                                <segments>
-                                    <segment title="Play"/>
-                                    <segment title="Camera"/>
-                                </segments>
-                            </segmentedControl>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="PlayStop" image="stop.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionStopStart:" destination="2" eventType="touchUpInside" id="lLk-wI-O6g"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GH-84-aJa">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Hlq-R4-JKD"/>
+                                    <constraint firstAttribute="width" constant="56" id="boB-ao-EmR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Graph" image="graph.png" backgroundImage="Default@2x.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evo-ZN-Nnr">
+                                <accessibility key="accessibilityConfiguration" label="PlayStart"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="Caf-mb-hh9"/>
+                                    <constraint firstAttribute="width" constant="66" id="bO0-tb-4b1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal" title="PlayStart" image="play.png" backgroundImage="play.png">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionStart:" destination="2" eventType="touchUpInside" id="8uI-A4-fCP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6R-fI-Um6">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Camera">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionCamera:" destination="2" eventType="touchUpInside" id="pHx-Zo-imj"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                        </accessibility>
                         <constraints>
-                            <constraint firstItem="TUP-1V-gWE" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="user" id="Bn2-FW-e5F"/>
-                            <constraint firstItem="D8Q-G4-w0n" firstAttribute="centerX" secondItem="TUP-1V-gWE" secondAttribute="centerX" type="user" id="Hq8-jI-S32"/>
-                            <constraint firstAttribute="bottom" secondItem="D8Q-G4-w0n" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="PLL-ti-fau"/>
-                            <constraint firstItem="TUP-1V-gWE" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="b2n-Gc-k3l"/>
-                            <constraint firstItem="D8Q-G4-w0n" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="user" id="tXu-uS-WzY"/>
-                            <constraint firstItem="TUP-1V-gWE" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="vU2-Jv-EFC"/>
+                            <constraint firstAttribute="bottom" secondItem="gay-1W-OqY" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="5s1-MF-crO"/>
+                            <constraint firstItem="0GH-84-aJa" firstAttribute="centerX" secondItem="TUP-1V-gWE" secondAttribute="centerX" type="default" id="DQy-Lz-jyb"/>
+                            <constraint firstItem="0GH-84-aJa" firstAttribute="centerY" secondItem="gay-1W-OqY" secondAttribute="centerY" type="default" id="FQ2-AD-sNE"/>
+                            <constraint firstItem="evo-ZN-Nnr" firstAttribute="centerY" secondItem="5" secondAttribute="centerY" type="default" id="HLi-HT-1au"/>
+                            <constraint firstItem="TUP-1V-gWE" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="user" id="MH2-EZ-JTv"/>
+                            <constraint firstAttribute="bottom" secondItem="0GH-84-aJa" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="N0d-IH-5qz"/>
+                            <constraint firstAttribute="bottom" secondItem="W6R-fI-Um6" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="a6h-O2-CzY"/>
+                            <constraint firstItem="TUP-1V-gWE" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="user" id="aY8-kV-i6f"/>
+                            <constraint firstAttribute="trailing" secondItem="W6R-fI-Um6" secondAttribute="trailing" constant="109" id="dWt-5D-vJY"/>
+                            <constraint firstItem="gay-1W-OqY" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="100" id="tl6-rs-BI9"/>
+                            <constraint firstItem="TUP-1V-gWE" firstAttribute="top" secondItem="5" secondAttribute="top" constant="7" id="u1F-VJ-hJ7"/>
+                            <constraint firstItem="0GH-84-aJa" firstAttribute="centerX" secondItem="evo-ZN-Nnr" secondAttribute="centerX" type="default" id="xFz-Ba-uJ3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnCamera" destination="W6R-fI-Um6" id="D9P-br-Us0"/>
+                        <outlet property="btnPauseStart" destination="gay-1W-OqY" id="U6w-zc-Q3a"/>
+                        <outlet property="btnStart" destination="evo-ZN-Nnr" id="ufB-sS-sGq"/>
                         <outlet property="imageView1" destination="TUP-1V-gWE" id="ycn-X3-uLn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1616" y="-954"/>
+            <point key="canvasLocation" x="-1934" y="-846"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Default@2x.png" width="640" height="960"/>
+        <image name="graph.png" width="64" height="64"/>
+        <image name="play.png" width="64" height="64"/>
+        <image name="stop.png" width="64" height="64"/>
+    </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -53,9 +131,12 @@
         <class className="com_gmail_simonwosborneViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/com_gmail_simonwosborneViewController.h"/>
             <relationships>
+                <relationship kind="action" name="actionCamera:"/>
                 <relationship kind="action" name="actionStart:"/>
-                <relationship kind="action" name="startVideo:"/>
-                <relationship kind="action" name="stopVideo:"/>
+                <relationship kind="action" name="actionStopStart:"/>
+                <relationship kind="outlet" name="btnCamera" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnPauseStart" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="imageView1" candidateClass="UIImageView"/>
             </relationships>
         </class>

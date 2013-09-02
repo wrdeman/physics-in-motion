@@ -21,22 +21,29 @@ using namespace cv;
 {
     CvVideoCamera* videoCamera;
     IBOutlet UIImageView *imageView1;
+    IBOutlet UIButton *btnStart;
+    IBOutlet UIButton *btnPauseStart;
+    IBOutlet UIButton *btnCamera;
 }
-- (IBAction)actionStart:(id)sender;
 
+- (IBAction)actionStart:(id)sender;
+- (IBAction)actionStopStart:(id)sender;
+- (IBAction)actionCamera:(id)sender;
 
 @property (nonatomic, retain) CvVideoCamera* videoCamera;
-//@property (strong, nonatomic) NSMutableArray *pos;
 @property (nonatomic, assign) BOOL newPoints;
+@property (nonatomic, assign) BOOL runVideo;
+@property (nonatomic, assign) int plotModifierValue;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView1;
+@property (nonatomic, retain) IBOutlet UIButton * btnStart;
+@property (nonatomic, retain) IBOutlet UIButton * btnPauseStart;
+@property (nonatomic, retain) IBOutlet UIButton * btnCamera;
 @property (nonatomic, assign) CVPlotting * process;
 @property (nonatomic, retain) CALayer *customPreviewLayer;
 
-@property (nonatomic) Mat previous;
 -(void) addPoint;
 -(void) deletePoint;
--(void) startVideo;
--(void) stopVideo;
+-(void) plotModifier;
 
 //-(BOOL)shouldAutorotate;
 //-(NSInteger)supportedInterfaceOrientations;

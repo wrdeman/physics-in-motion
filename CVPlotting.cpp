@@ -46,19 +46,18 @@ void CVPlotting::setPlotPoints(){
             CVPlotting::minPoints->replace("y",y);
         }
     }
-    ////////////////////////////////
     //using structure
-    
     float vals[] = {(float)size, x, y};
     CVPlotting::plotPoints.push_back(new PlotPoints::PlotPoints(names,vals));
 }
 
     
-void CVPlotting::plotData(cv::Mat image){
-    float xdat,ydat,xmin,xmax,ymin,ymax;
-    float x_cv1, x_cv2, y_cv1, y_cv2;
+void CVPlotting::plotData(cv::Mat image, int plotPosition){
+    float xdat,ydat;
+    size_t cvwidlem;
     //size of the opencv frame
     cv::Size cvwidlen=CVProcessing::gray.size();
+
     int x_cvFrame = cvwidlen.width;
     int y_cvFrame = cvwidlen.height;
 
@@ -67,60 +66,91 @@ void CVPlotting::plotData(cv::Mat image){
     float yy2=float((y_cvFrame)/2);
     
     //opencv lengths of axis
+    // 90% of the half size - i.e. isn't flush with edges
     float dx = (xx2*0.9);
     float dy = (yy2*0.9);
     
+    float xp,yp;
+    
+    if (plotPosition%2==0){
+        xp=0;
+        if (plotPosition<3){
+            //2
+            yp = -yy2;
+        }
+        else{
+            yp = 0;
+        }
+    }
+    else{
+        //1 or 3
+        xp=xx2;
+        if (plotPosition<1){
+            //1
+            yp = -yy2;
+        }
+        else{
+            yp = 0;
+        }
+    }
+            
     //y-axis
     cv::line(image,
-             (cv::Point(xx2,yy2*0.1)),
-             cv::Point(xx2,yy2),
+             (cv::Point(xx2+xp,yy2+(yy2*0.9)+yp)),
+             cv::Point(xx2+xp,yy2+yp),
              cv::Scalar(255,0,0),
              1);
     //x-axis
     // i want the x axis to intercept the y at x=0
     if (CVPlotting::minPoints->getParam("y")*CVPlotting::maxPoints->getParam("y")>0){
         cv::line(image,
-                 cv::Point(xx2,yy2),
-                 cv::Point(int(xx2+xx2*0.9),yy2),
+                 cv::Point(xx2+xp,yy2+yp),
+                 cv::Point((xx2*0.1)+xp,yy2+yp),
                  cv::Scalar(255,0,0),
                  1);
     }
     else{
         float adYInt = float(yy2 - dy*abs(CVPlotting::minPoints->getParam("y")/(CVPlotting::maxPoints->getParam("y")-CVPlotting::minPoints->getParam("y"))));
         cv::line(image,
-                 cv::Point(xx2,adYInt),
-                 cv::Point((xx2+xx2*0.9),adYInt),
+                 cv::Point(xx2,adYInt+yp),
+                 cv::Point((xx2*0.1)+xp,adYInt+yp),
                  cv::Scalar(255,0,0),
                  1);
     }
     
-        if (CVPlotting::plotPoints.size() > 1){
-            for (int i_graph = 0; i_graph < CVPlotting::plotPoints.size()-1; i_graph++){
-                xdat = CVPlotting::plotPoints[i_graph]->getParam("x");
-                ydat = CVPlotting::plotPoints[i_graph]->getParam("y");
+    if (CVPlotting::plotPoints.size() > 1){
+        for (int i_graph = 0; i_graph < CVPlotting::plotPoints.size()-1; i_graph++){
+            xdat = CVPlotting::plotPoints[i_graph]->getParam("x");
+            ydat = CVPlotting::plotPoints[i_graph]->getParam("y");
                 
-                xmin = CVPlotting::minPoints->getParam("x");
-                xmax = CVPlotting::maxPoints->getParam("x");
-                ymin = CVPlotting::minPoints->getParam("y");
-                ymax = CVPlotting::maxPoints->getParam("y");
+            cv::Point p1 = CVPlotting::transformPlot(xdat, ydat,dx,dy,xx2,yy2);
+            
+            xdat = CVPlotting::plotPoints[i_graph+1]->getParam("x");
+            ydat = CVPlotting::plotPoints[i_graph+1]->getParam("y");
                 
-                x_cv1 = ((xdat-xmin)/(xmax-xmin))*dx+xx2;
-                y_cv1 = ((ydat-ymin)/(ymax-ymin))*dy+yy2*0.1;
-                
-                xdat = CVPlotting::plotPoints[i_graph+1]->getParam("x");
-                ydat = CVPlotting::plotPoints[i_graph+1]->getParam("y");
-                
-                x_cv2 = ((xdat-xmin)/(xmax-xmin))*dx+xx2;
-                y_cv2 = ((ydat-ymin)/(ymax-ymin))*dy+yy2*0.1;
-                cv::line(image,
-                         cv::Point((x_cv1),(y_cv1)),
-                         cv::Point((x_cv2),(y_cv2)),
-                         cv::Scalar(255,255,0),
-                         1);
-                }
-        
+            cv::Point p2 = CVPlotting::transformPlot(xdat, ydat,dx,dy,xx2,yy2);
+            
+            cv::line(image,
+                    p1,
+                    p2,
+                    cv::Scalar(255,255,0),
+                    1);
+        }
     }
 }
 
-
+cv::Point CVPlotting::transformPlot(float xdat, float ydat, float dx, float dy, float xx2, float yy2){
+    
+    float xmin = CVPlotting::minPoints->getParam("x");
+    float xmax = CVPlotting::maxPoints->getParam("x");
+    float ymin = CVPlotting::minPoints->getParam("y");
+    float ymax = CVPlotting::maxPoints->getParam("y");
+    
+    
+    float x_new = ((xdat-xmin)/(xmax-xmin))*dx-dx;
+    float y_new = ((ydat-ymin)/(ymax-ymin))*dy+yy2;
+    
+    
+    return cv::Point(x_new,y_new);
+}
 
