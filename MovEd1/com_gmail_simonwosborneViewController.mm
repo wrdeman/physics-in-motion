@@ -135,9 +135,7 @@ using namespace std;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    //Instantiate a tap gesture recognizer
-    self.newPoints = false;
+    //-----------------------------------------tap gestures-------------------------------------------------------------------------
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPoint:)];
     singleTap.numberOfTapsRequired = 1;
@@ -151,6 +149,8 @@ using namespace std;
     [self.view addGestureRecognizer:doubleTap];
     [singleTap requireGestureRecognizerToFail:doubleTap];
     doubleTap.delegate = self;
+
+    //-----------------------------------------swipe gestures-----------------------------------------------------------------------
     
     UISwipeGestureRecognizer *leftSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
     leftSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
@@ -171,23 +171,25 @@ using namespace std;
     downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:downSwipe];
     downSwipe.delegate=self;
+
+    //------------------------------------------------------------------------------------------------------------------------------
     
+    // camera + video settings (cap_ios.h in opencv frmaework)
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:imageView1];
     self.videoCamera.delegate=self;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
-//    //self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    
-    
-    [self.videoCamera.captureVideoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
-    //self.videoCamera.videoCaptureConnection.supportsVideoOrientation =
+    [self.videoCamera.captureVideoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
+    
+    //tracking and plotting variables
     self.plotModifierValue = 2;
-    //self.pos = [[NSMutableArray alloc] init];
- 
     self.process = new CVPlotting();
- }
+    self.newPoints = false;
+
+
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -205,9 +207,9 @@ using namespace std;
 #pragma mark - InterfaceOrientation iOS 6
 /*
 - (BOOL)shouldAutorotate{
-    return NO;
-}
-*/
+    return YES;
+}*/
+
 #ifdef __cplusplus
 -(void)processImage:(Mat&)image;
 {

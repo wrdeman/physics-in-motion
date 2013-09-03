@@ -22,7 +22,7 @@ class CVPlotting: public CVProcessing
 private:
     PlotPoints::PlotPoints * maxPoints;
     PlotPoints::PlotPoints * minPoints;
-    cv::Point transformPlot(float x, float y, float dx, float dy, float xx2, float yy2);
+    cv::Point transformPlot(float x, float y, float dx, float dy, float xx2, float yy2, float xp, float yp);
     
 public:
     CVPlotting();

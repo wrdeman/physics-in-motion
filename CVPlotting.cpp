@@ -58,9 +58,13 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition){
     //size of the opencv frame
     cv::Size cvwidlen=CVProcessing::gray.size();
 
+    //the parameters y_cvFrame and y_offset are hardcoded for LandscapeLeft
+    //this is a fudge because iOS and CV have different image sizes
+    //in an ideal world this world be dynamically set but am I that fussed of PoC?
     int x_cvFrame = cvwidlen.width;
-    int y_cvFrame = cvwidlen.height;
-
+    int y_cvFrame = int(cvwidlen.width * (3./5.));
+    float y_offset = 75;
+    
     //size of half the opencv frame
     float xx2=float((x_cvFrame)/2);
     float yy2=float((y_cvFrame)/2);
@@ -72,34 +76,36 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition){
     
     float xp,yp;
     
+    //----get plot position---------
     if (plotPosition%2==0){
         xp=0;
-        if (plotPosition<3){
-            //2
-            yp = -yy2;
+        if (plotPosition>3){
+            //4
+            yp = -dy+y_offset;
         }
         else{
-            yp = 0;
+            yp = 0+y_offset;
         }
     }
     else{
         //1 or 3
-        xp=xx2;
-        if (plotPosition<1){
+        xp=dx;
+        if (plotPosition>1){
             //1
-            yp = -yy2;
+            yp = -dy+y_offset;
         }
         else{
-            yp = 0;
+            yp = 0+y_offset;
         }
     }
-            
+    //-----------------------------
     //y-axis
     cv::line(image,
              (cv::Point(xx2+xp,yy2+(yy2*0.9)+yp)),
              cv::Point(xx2+xp,yy2+yp),
              cv::Scalar(255,0,0),
              1);
+    
     //x-axis
     // i want the x axis to intercept the y at x=0
     if (CVPlotting::minPoints->getParam("y")*CVPlotting::maxPoints->getParam("y")>0){
@@ -123,12 +129,12 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition){
             xdat = CVPlotting::plotPoints[i_graph]->getParam("x");
             ydat = CVPlotting::plotPoints[i_graph]->getParam("y");
                 
-            cv::Point p1 = CVPlotting::transformPlot(xdat, ydat,dx,dy,xx2,yy2);
+            cv::Point p1 = CVPlotting::transformPlot(xdat, ydat,dx,dy,xx2,yy2,xp,yp);
             
             xdat = CVPlotting::plotPoints[i_graph+1]->getParam("x");
             ydat = CVPlotting::plotPoints[i_graph+1]->getParam("y");
                 
-            cv::Point p2 = CVPlotting::transformPlot(xdat, ydat,dx,dy,xx2,yy2);
+            cv::Point p2 = CVPlotting::transformPlot(xdat, ydat,dx,dy,xx2,yy2,xp,yp);
             
             cv::line(image,
                     p1,
@@ -139,7 +145,7 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition){
     }
 }
 
-cv::Point CVPlotting::transformPlot(float xdat, float ydat, float dx, float dy, float xx2, float yy2){
+cv::Point CVPlotting::transformPlot(float xdat, float ydat, float dx, float dy, float xx2, float yy2, float xp, float yp){
     
     float xmin = CVPlotting::minPoints->getParam("x");
     float xmax = CVPlotting::maxPoints->getParam("x");
@@ -147,8 +153,8 @@ cv::Point CVPlotting::transformPlot(float xdat, float ydat, float dx, float dy, 
     float ymax = CVPlotting::maxPoints->getParam("y");
     
     
-    float x_new = ((xdat-xmin)/(xmax-xmin))*dx-dx;
-    float y_new = ((ydat-ymin)/(ymax-ymin))*dy+yy2;
+    float x_new = ((xdat-xmin)/(xmax-xmin))*dx+(xx2*0.1)+xp;
+    float y_new = ((ydat-ymin)/(ymax-ymin))*dy+yy2+yp;
     
     
     return cv::Point(x_new,y_new);
