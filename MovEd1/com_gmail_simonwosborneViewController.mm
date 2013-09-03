@@ -29,9 +29,9 @@ using namespace std;
 
 @implementation com_gmail_simonwosborneViewController
 @synthesize imageView1;
-@synthesize btnStart;
-@synthesize btnPauseStart;
 @synthesize btnCamera;
+@synthesize btnPausePlay;
+@synthesize toolbar;
 @synthesize videoCamera;
 @synthesize process;
 @synthesize newPoints;
@@ -46,15 +46,34 @@ using namespace std;
     //convert NSNumber to int
     int x =[[NSNumber numberWithInteger:location.x] intValue];
     int y =[[NSNumber numberWithInteger:location.y] intValue];
-    //send to CVProcessing instance
+    //send to CVProcessing instance    
     self.process->cvNewPoint(x,y);
     //declare new points
     self.newPoints=true;
 }
-- (void) deletePoint:(UITapGestureRecognizer *)recognizer
+
+- (void) addOrigin:(UILongPressGestureRecognizer *)recognizer
+{
+    //To get location of the gesture
+    CGPoint location = [recognizer locationInView:self.imageView1];
+    //convert NSNumber to int
+    int x =[[NSNumber numberWithInteger:location.x] intValue];
+    int y =[[NSNumber numberWithInteger:location.y] intValue];
+    self.process->cvOrigin(x,y);
+    //declare new points
+    self.newOrigin=true;
+}
+
+- (void) deletePoint:(UIPinchGestureRecognizer *)recognizer
 {
     //remove last point from vector in instance of CVProcessing
     self.process->cvDeletePoint();
+}
+
+- (void) deleteOrigin:(UILongPressGestureRecognizer *)recognizer
+{
+    //remove last point from vector in instance of CVProcessing
+    self.process->cvDeleteOrigin();
 }
 
 -(void) plotModifier:(UISwipeGestureRecognizer *)gesture
@@ -103,50 +122,50 @@ using namespace std;
 
 #pragma mark - UI Actions
 
-- (IBAction)star:(id)sender {
-}
-
-- (IBAction)actionStart:(id)sender {
-    [self.videoCamera start];
-    self.btnStart.hidden = YES;
-    self.btnPauseStart.hidden = FALSE;
-    self.runVideo = TRUE;
-}
-
-- (IBAction)actionStopStart:(id)sender {
-    if (self.runVideo){
-        [self.videoCamera stop];
-        self.runVideo = FALSE;
-        [btnPauseStart setImage:[UIImage imageNamed:@"playone.png"] forState:UIControlStateNormal];
-    }
-    else{
-        [self.videoCamera start];
-        self.runVideo = TRUE;
-        [btnPauseStart setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
-
-    }
-}
 
 - (IBAction)actionCamera:(id)sender {
     [self.videoCamera switchCameras];
 }
 
+- (IBAction)actionPausePlay:(id)sender {
+    NSLog(@"here");
+    if (self.runVideo){
+        [self.videoCamera stop];
+        self.runVideo = FALSE;
+    }
+    else{
+        [self.videoCamera start];
+        self.runVideo = TRUE;
+        
+    }
+}
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //-----------------------------------------long tap gesture---------------------------------------------------------------------
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addOrigin:)];
+    [self.imageView1 addGestureRecognizer:longPress];
+    longPress.delegate = self;
+    
+    UIPinchGestureRecognizer *pinchPress = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(deleteOrigin:)];
+    [self.imageView1 addGestureRecognizer:pinchPress];
+    pinchPress.delegate = self;
+    
     //-----------------------------------------tap gestures-------------------------------------------------------------------------
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPoint:)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:singleTap];
+    [self.imageView1 addGestureRecognizer:singleTap];
     singleTap.delegate = self;
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deletePoint:)];
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:doubleTap];
+    [self.imageView1 addGestureRecognizer:doubleTap];
     [singleTap requireGestureRecognizerToFail:doubleTap];
     doubleTap.delegate = self;
 
@@ -154,22 +173,22 @@ using namespace std;
     
     UISwipeGestureRecognizer *leftSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
     leftSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:leftSwipe];
+    [self.imageView1 addGestureRecognizer:leftSwipe];
     leftSwipe.delegate=self;
     
     UISwipeGestureRecognizer *rightSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
     rightSwipe.direction=UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:rightSwipe];
+    [self.imageView1 addGestureRecognizer:rightSwipe];
     rightSwipe.delegate=self;
 
     UISwipeGestureRecognizer *upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
     upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
-    [self.view addGestureRecognizer:upSwipe];
+    [self.imageView1 addGestureRecognizer:upSwipe];
     upSwipe.delegate=self;
     
     UISwipeGestureRecognizer *downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
     downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
-    [self.view addGestureRecognizer:downSwipe];
+    [self.imageView1 addGestureRecognizer:downSwipe];
     downSwipe.delegate=self;
 
     //------------------------------------------------------------------------------------------------------------------------------
@@ -182,13 +201,12 @@ using namespace std;
     [self.videoCamera.captureVideoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
-    
+    self.imageView1.userInteractionEnabled = YES;
     //tracking and plotting variables
     self.plotModifierValue = 2;
     self.process = new CVPlotting();
     self.newPoints = false;
-
-
+    self.newOrigin = false;
 }
 - (void)viewDidUnload
 {

@@ -21,28 +21,30 @@ using namespace cv;
 {
     CvVideoCamera* videoCamera;
     IBOutlet UIImageView *imageView1;
-    IBOutlet UIButton *btnStart;
-    IBOutlet UIButton *btnPauseStart;
-    IBOutlet UIButton *btnCamera;
+    IBOutlet UIBarButtonItem *btnPausePlay;
+    IBOutlet UIBarButtonItem *btnCamera;
+    IBOutlet UIToolbar *toolbar;
 }
 
-- (IBAction)actionStart:(id)sender;
-- (IBAction)actionStopStart:(id)sender;
 - (IBAction)actionCamera:(id)sender;
+- (IBAction)actionPausePlay:(id)sender;
 
 @property (nonatomic, retain) CvVideoCamera* videoCamera;
 @property (nonatomic, assign) BOOL newPoints;
+@property (nonatomic, assign) BOOL newOrigin;
 @property (nonatomic, assign) BOOL runVideo;
 @property (nonatomic, assign) int plotModifierValue;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView1;
-@property (nonatomic, retain) IBOutlet UIButton * btnStart;
-@property (nonatomic, retain) IBOutlet UIButton * btnPauseStart;
-@property (nonatomic, retain) IBOutlet UIButton * btnCamera;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *btnCamera;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *btnPausePlay;
 @property (nonatomic, assign) CVPlotting * process;
 @property (nonatomic, retain) CALayer *customPreviewLayer;
 
 -(void) addPoint;
+-(void) addOrigin;
 -(void) deletePoint;
+-(void) deleteOrigin;
 -(void) plotModifier;
 
 //-(BOOL)shouldAutorotate;

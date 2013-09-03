@@ -36,16 +36,15 @@ protected:
 public:
     //empty constructor
     CVProcessing();
-    
     void cvNewPoint(int x, int y);
     void cvDeletePoint();
+    void cvDeleteOrigin();
     void cvTracking(cv::Mat image ,bool newPoints);
     int cvTrackedPoints();
-    
+    void cvOrigin(int x, int y);
     std::vector<cv::Point2f> points[2];
     std::vector<int> newpoint;
-    
-    
+    std::vector<cv::Point2f> origin2f;
 };
 
 #endif /* defined(__MovEd1__CVProcessing__) */

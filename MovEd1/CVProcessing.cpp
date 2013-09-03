@@ -67,9 +67,24 @@ void CVProcessing::cvAddPoint(){
     tmp.clear();
     newpoint.clear();
 }
+void CVProcessing::cvOrigin(int x, int y){
+    cv::Size cvwidlen=CVProcessing::gray.size();
+    //define a c++ vector for points needed for opencv
+    std::vector<cv::Point2f> origin2f;
     
+    //THESE TRANSFORMATIONS WILL NEED TO
+    x=IPAD_X-x;
+    y=IPAD_Y-y;
+    //these are the points that go into opencv
+    CVProcessing::origin2f.push_back(cv::Point2f(float(cvwidlen.width*x/IPAD_X),float(cvwidlen.height*y/IPAD_Y)));
+}
+
 void CVProcessing::cvDeletePoint(){
     CVProcessing::points[0].pop_back();
+}
+
+void CVProcessing::cvDeleteOrigin(){
+    CVProcessing::origin2f.pop_back();
 }
 
 int CVProcessing::cvTrackedPoints(){
@@ -77,8 +92,6 @@ int CVProcessing::cvTrackedPoints(){
 }
 
 void CVProcessing::cvTracking(cv::Mat image, bool newPoints){
-    
-    
     cv::cvtColor(image, CVProcessing::gray, CV_RGBA2GRAY);
     size_t i, k;
     
@@ -96,6 +109,9 @@ void CVProcessing::cvTracking(cv::Mat image, bool newPoints){
             cv::circle(image, CVProcessing::points[1][i], 3, cv::Scalar(0,255,0), -1, 8);
         }
         CVProcessing::points[1].resize(k);
+    }
+    if (!CVProcessing::origin2f.empty()){
+        cv::circle(image, CVProcessing::origin2f[0], 3, cv::Scalar(255,255,0), -1, 8);
     }
     std::swap(CVProcessing::points[1],CVProcessing::points[0]);
     CVProcessing::gray.copyTo(CVProcessing::previous);

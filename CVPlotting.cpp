@@ -62,8 +62,8 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition){
     //this is a fudge because iOS and CV have different image sizes
     //in an ideal world this world be dynamically set but am I that fussed of PoC?
     int x_cvFrame = cvwidlen.width;
-    int y_cvFrame = int(cvwidlen.width * (3./5.));
-    float y_offset = 75;
+    int y_cvFrame = int(cvwidlen.height);
+    
     
     //size of half the opencv frame
     float xx2=float((x_cvFrame)/2);
@@ -81,10 +81,10 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition){
         xp=0;
         if (plotPosition>3){
             //4
-            yp = -dy+y_offset;
+            yp = -dy;
         }
         else{
-            yp = 0+y_offset;
+            yp = 0;
         }
     }
     else{
@@ -92,10 +92,10 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition){
         xp=dx;
         if (plotPosition>1){
             //1
-            yp = -dy+y_offset;
+            yp = -dy;
         }
         else{
-            yp = 0+y_offset;
+            yp = 0;
         }
     }
     //-----------------------------
