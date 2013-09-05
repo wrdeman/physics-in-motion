@@ -11,17 +11,18 @@
 
 PlotPoints::PlotPoints(){}
 
-PlotPoints::PlotPoints(std::string name[], float vals[]){
-    PlotPoints::setData(name, vals);
+PlotPoints::PlotPoints(float vals[]){
+    PlotPoints::setData(vals);
 }
 
-void PlotPoints::setData(std::string name[], float vals[])
+void PlotPoints::setData(float vals[])
 {
     size_t size;
     size=sizeof(vals);
     //std::cout<<"size is = "<<sizeof(vals)<<std::endl;
+    float PlotPoints::points[sizeof(vals)];
     for (int i = 0; i < size; i++){
-        PlotPoints::points[name[i]] = vals[i];
+        PlotPoints::points[i] = vals[i];
     }
 }
 

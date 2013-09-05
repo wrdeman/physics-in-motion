@@ -14,23 +14,33 @@
 #include "PlotPoints.h"
 #include <vector>
 #include <string>
-#import "opencv2/highgui/highgui.hpp"
-#import "opencv2/imgproc/imgproc.hpp"
+#include <math.h>
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+
+
+#define NUM_PLOT 7
 
 class CVPlotting: public CVProcessing
 {
 private:
-    PlotPoints::PlotPoints * maxPoints;
-    PlotPoints::PlotPoints * minPoints;
-    cv::Point transformPlot(float x, float y, float dx, float dy, float xx2, float yy2, float xp, float yp);
+    //int num_plot;
+    std::vector<float> maxPoints;
+    std::vector<float> minPoints;
+    
+    cv::Point transformPlot(float x, float y, float dx, float dy, float xx2, float yy2, float xp, float yp, int xaxis, int yaxis);
+    
+    float amp(float x, float y, float Ox, float Oy);
+    float damp(float a1, float a0, float dt);
+    float th(float x, float y, float Ox, float Oy);
+    float dth(float t1, float t0, float dt);
     
 public:
     CVPlotting();
     void setPlotPoints();
-    void plotData(cv::Mat image, int plotPosition);    
-    
-    std::vector<PlotPoints::PlotPoints*> plotPoints;
-    
+    void plotData(cv::Mat image, int plotPosition, int xaxis, int yaxis);
+    std::vector<std::vector<float>> plotPoints;
+    void resetPlotPoints();
 };
 
 

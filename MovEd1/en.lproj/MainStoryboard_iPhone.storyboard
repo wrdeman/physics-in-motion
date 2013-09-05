@@ -9,25 +9,71 @@
             <objects>
                 <viewController id="2" customClass="com_gmail_simonwosborneViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="568" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mA1-W6-YPP"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mA1-W6-YPP">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="558" id="R98-gp-ipx"/>
+                                </constraints>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dj9-xj-n9H">
+                                <items>
+                                    <barButtonItem systemItem="play" id="ZsB-0w-rt8">
+                                        <connections>
+                                            <action selector="actionPausePlay:" destination="2" id="fZ5-wa-4K4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="camera" id="vZe-76-WmU">
+                                        <connections>
+                                            <action selector="actionCamera:" destination="2" id="aa4-a0-SGP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="276" style="plain" systemItem="fixedSpace" id="bjj-Rm-PwC"/>
+                                    <barButtonItem title="Reset" id="Bzi-HJ-e6v">
+                                        <connections>
+                                            <action selector="resetArray:" destination="2" id="VIN-Ct-ZrP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Axis" id="dXn-Ov-p8O">
+                                        <connections>
+                                            <action selector="showPicker:" destination="2" id="k3w-9M-1yL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWi-y5-NNC">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="205" id="ZSb-MG-gZr"/>
+                                    <constraint firstAttribute="height" constant="216" id="ZTL-Js-GBI"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mA1-W6-YPP" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="0I7-WS-Wxn"/>
-                            <constraint firstItem="mA1-W6-YPP" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Sag-dS-xq2"/>
-                            <constraint firstItem="mA1-W6-YPP" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="uSq-td-Emd"/>
-                            <constraint firstItem="mA1-W6-YPP" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="xvx-3j-3MH"/>
+                            <constraint firstItem="mA1-W6-YPP" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="6IA-lH-0iB"/>
+                            <constraint firstItem="JWi-y5-NNC" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" type="default" id="8QT-9S-cG2"/>
+                            <constraint firstItem="Dj9-xj-n9H" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Lnq-Yg-TQe"/>
+                            <constraint firstItem="mA1-W6-YPP" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="cHq-lf-h5G"/>
+                            <constraint firstItem="Dj9-xj-n9H" firstAttribute="centerY" secondItem="mA1-W6-YPP" secondAttribute="centerY" type="default" id="cP6-BA-uq2"/>
+                            <constraint firstItem="mA1-W6-YPP" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="cTN-p6-YJr"/>
+                            <constraint firstItem="Dj9-xj-n9H" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="kB6-1e-fMO"/>
+                            <constraint firstItem="JWi-y5-NNC" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="mrs-Ef-7Iu"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="imageView1" destination="mA1-W6-YPP" id="O8U-dX-LVi"/>
+                        <outlet property="btnCamera" destination="vZe-76-WmU" id="lKn-P0-9OP"/>
+                        <outlet property="btnPausePlay" destination="ZsB-0w-rt8" id="Ilv-JO-qI8"/>
+                        <outlet property="imageView1" destination="mA1-W6-YPP" id="A8j-qL-9xC"/>
+                        <outlet property="pickerView" destination="JWi-y5-NNC" id="py1-c8-03B"/>
+                        <outlet property="showPicker" destination="dXn-Ov-p8O" id="7x2-3p-Elv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-104" y="27"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

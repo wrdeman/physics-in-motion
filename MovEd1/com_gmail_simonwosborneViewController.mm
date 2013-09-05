@@ -13,6 +13,10 @@
 #define IPAD_X 1024
 #define IPAD_Y 768
 
+#define kxaxis 0
+#define kyaxis 1
+
+
 #define DEGREES_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
 #include <vector>
@@ -32,11 +36,15 @@ using namespace std;
 @synthesize btnCamera;
 @synthesize btnPausePlay;
 @synthesize toolbar;
+@synthesize showPicker;
+
 @synthesize videoCamera;
 @synthesize process;
 @synthesize newPoints;
 @synthesize runVideo;
 @synthesize plotModifierValue;
+@synthesize axisx;
+@synthesize axisy;
 
 #pragma - Private Methods
 - (void) addPoint:(UITapGestureRecognizer *)recognizer
@@ -74,6 +82,7 @@ using namespace std;
 {
     //remove last point from vector in instance of CVProcessing
     self.process->cvDeleteOrigin();
+    self.newOrigin=false;
 }
 
 -(void) plotModifier:(UISwipeGestureRecognizer *)gesture
@@ -128,7 +137,6 @@ using namespace std;
 }
 
 - (IBAction)actionPausePlay:(id)sender {
-    NSLog(@"here");
     if (self.runVideo){
         [self.videoCamera stop];
         self.runVideo = FALSE;
@@ -140,11 +148,22 @@ using namespace std;
     }
 }
 
+- (IBAction)showPicker:(id)sender {
+    if (self.pickerView) self.pickerView.hidden = !self.pickerView.hidden;
+}
 
+- (IBAction)resetArray:(id)sender{
+    self.process->CVPlotting::resetPlotPoints();
+}
 
 - (void)viewDidLoad
 {
+    [self.pickerView setDelegate:self];
+    [self.pickerView setDataSource:self];
+    
     [super viewDidLoad];
+    
+    
     //-----------------------------------------long tap gesture---------------------------------------------------------------------
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addOrigin:)];
     [self.imageView1 addGestureRecognizer:longPress];
@@ -207,6 +226,9 @@ using namespace std;
     self.process = new CVPlotting();
     self.newPoints = false;
     self.newOrigin = false;
+    axisArray = [NSArray arrayWithObjects:@"time", @"x", @"y",@"Ø", @"dØ/dt", @"A", @"dA/dt", nil];
+    self.axisx = 1;
+    self.axisy = 2;
 }
 - (void)viewDidUnload
 {
@@ -222,21 +244,45 @@ using namespace std;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - InterfaceOrientation iOS 6
-/*
-- (BOOL)shouldAutorotate{
-    return YES;
-}*/
+#pragma mark
+#pragma mark Picker Data Source Methods
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 2;
+}
+//both the same length
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [axisArray count];
+}
+
+-(NSString *)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    if (component == kxaxis)
+        return [axisArray objectAtIndex:row];
+    return [axisArray objectAtIndex:row];
+}
+
+-(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if (component == kxaxis){
+        NSLog(@"x = %d",row);
+//        *selectedItemx = row;
+        self.axisx = row;
+    }
+    if (component == kyaxis){
+        NSLog(@"x = %d",row);
+        self.axisy = row;
+//        *selectedItemy = row;
+    }
+}
+
 
 #ifdef __cplusplus
 -(void)processImage:(Mat&)image;
 {
-    
+//    NSLog(@"%d",isPad);
     self.process->cvTracking(image , newPoints);
     self.newPoints = false;
     if (self.process->cvTrackedPoints()>0){
         self.process->setPlotPoints();
-        self.process->plotData(image,self.plotModifierValue);
+        self.process->plotData(image,self.plotModifierValue, self.axisx, self.axisy);
     }
 }
 #endif
