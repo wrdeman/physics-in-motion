@@ -13,25 +13,37 @@
 #import "opencv2/imgproc/imgproc.hpp"
 #import "opencv2/video/tracking.hpp"
 #include "CVPlotting.h"
+#include "CVCalib.h"
 
 using namespace cv;
 
 
-@interface com_gmail_simonwosborneViewController : UIViewController<CvVideoCameraDelegate,UIGestureRecognizerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface com_gmail_simonwosborneViewController : UIViewController<CvVideoCameraDelegate,UIGestureRecognizerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIAlertViewDelegate>
 {
     CvVideoCamera* videoCamera;
     NSArray *axisArray;
     IBOutlet UIImageView *imageView1;
     IBOutlet UIBarButtonItem *btnPausePlay;
     IBOutlet UIBarButtonItem *btnCamera;
+    IBOutlet UIBarButtonItem *btnCalib;
+    IBOutlet UIBarButtonItem *btnScale;
     IBOutlet UIToolbar *toolbar;
     IBOutlet UIBarButtonItem *showPicker;
+    IBOutlet UIActivityIndicatorView *busy;
+    IBOutlet UITextField *scaleText;
+    IBOutlet UILabel *scaleLabel;
+    IBOutlet UIButton *scaleSubmit;
 }
+
 
 - (IBAction)actionCamera:(id)sender;
 - (IBAction)actionPausePlay:(id)sender;
 - (IBAction)showPicker:(id)sender;
 - (IBAction)resetArray:(id)sender;
+- (IBAction)calibCamera:(id)sender;
+- (IBAction) scale:(id)sender;
+- (IBAction) scaleSubmit:(id)sender;
+
 
 @property (nonatomic, retain) CvVideoCamera* videoCamera;
 @property (nonatomic, assign) BOOL newPoints;
@@ -43,12 +55,25 @@ using namespace cv;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView1;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnCamera;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnPausePlay;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *btnCalib;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *showPicker;
 @property (strong, nonatomic) IBOutlet UIPickerView * pickerView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView * busy;
+@property (strong, nonatomic) IBOutlet UITextField *scaleText;
+@property (strong, nonatomic) IBOutlet UIButton *scaleSubmit;
+@property (strong, nonatomic) IBOutlet UILabel *scaleLabel;
+
+
 @property (nonatomic, assign) CVPlotting * process;
+@property (nonatomic, assign) CVCalib * calib;
 @property (nonatomic, retain) CALayer *customPreviewLayer;
 @property (nonatomic,assign) int axisx;
 @property (nonatomic,assign) int axisy;
+@property (nonatomic,assign) int calibCameraCount;
+@property (nonatomic,assign) bool calibCamera;
+@property (nonatomic,assign) bool calibCameraShot;
+@property (nonatomic, assign) float scaleNum;
+
 
 -(void) addPoint;
 -(void) addOrigin;

@@ -40,6 +40,7 @@
 		F4D174BC172EE84700169795 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174BA172EE84700169795 /* CoreMedia.framework */; };
 		F4D174C0172EEF8000169795 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D174BF172EEF8000169795 /* opencv2.framework */; };
 		F4E0774617CBF9C50043FC7B /* CVProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E0774417CBF9C50043FC7B /* CVProcessing.cpp */; };
+		F4E1209B17D9CDC2005CB1BF /* CVCalib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E1209917D9CDC2005CB1BF /* CVCalib.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		F4D174BF172EEF8000169795 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../opencv_ios/opencv2.framework; sourceTree = "<group>"; };
 		F4E0774417CBF9C50043FC7B /* CVProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVProcessing.cpp; sourceTree = "<group>"; };
 		F4E0774517CBF9C50043FC7B /* CVProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVProcessing.h; sourceTree = "<group>"; };
+		F4E1209917D9CDC2005CB1BF /* CVCalib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVCalib.cpp; sourceTree = "<group>"; };
+		F4E1209A17D9CDC2005CB1BF /* CVCalib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCalib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				F47EB58817D48958009D88BB /* MainStoryboard_iPad.storyboard */,
 				F4D17489172EE38F00169795 /* com_gmail_simonwosborneViewController.h */,
 				F4D1748A172EE38F00169795 /* com_gmail_simonwosborneViewController.mm */,
+				F4E1209917D9CDC2005CB1BF /* CVCalib.cpp */,
+				F4E1209A17D9CDC2005CB1BF /* CVCalib.h */,
 				F4E0774417CBF9C50043FC7B /* CVProcessing.cpp */,
 				F4E0774517CBF9C50043FC7B /* CVProcessing.h */,
 				F4C82EF817CF74A800C887C4 /* CVPlotting.cpp */,
@@ -346,6 +351,7 @@
 				F4D1748B172EE38F00169795 /* com_gmail_simonwosborneViewController.mm in Sources */,
 				F4E0774617CBF9C50043FC7B /* CVProcessing.cpp in Sources */,
 				F4C82EFA17CF74A800C887C4 /* CVPlotting.cpp in Sources */,
+				F4E1209B17D9CDC2005CB1BF /* CVCalib.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

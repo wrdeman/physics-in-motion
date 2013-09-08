@@ -17,9 +17,6 @@
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1030" id="baz-7s-F4J"/>
-                                </constraints>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUK-ih-Jhu">
                                 <items>
@@ -31,6 +28,16 @@
                                     <barButtonItem systemItem="camera" id="UfK-yJ-awY">
                                         <connections>
                                             <action selector="actionCamera:" destination="2" id="eYL-TJ-tTb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Calib" id="baR-eN-llf">
+                                        <connections>
+                                            <action selector="calibCamera:" destination="2" id="nEG-LD-BHk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Scale" id="joL-oK-9O1">
+                                        <connections>
+                                            <action selector="scale:" destination="2" id="ctm-sh-kox"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1Z8-Lo-oJz"/>
@@ -53,29 +60,74 @@
                                     <constraint firstAttribute="width" constant="433" id="Op1-1o-b8e"/>
                                 </constraints>
                             </pickerView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="o2p-ag-yN2"/>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nzl-fB-i7G">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="gel-Aa-uSs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckr-sN-rRc">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="KEL-XS-fbc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scaleSubmit:" destination="2" eventType="touchUpInside" id="6hV-BX-NWv"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Size of Chess Square" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wh-yZ-IeQ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                         </accessibility>
                         <constraints>
+                            <constraint firstItem="o2p-ag-yN2" firstAttribute="centerY" secondItem="TUP-1V-gWE" secondAttribute="centerY" type="user" id="0Ly-8z-Zg2"/>
+                            <constraint firstItem="4wh-yZ-IeQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="433" id="9gR-7e-hQr"/>
+                            <constraint firstItem="Nzl-fB-i7G" firstAttribute="top" secondItem="4wh-yZ-IeQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Cfj-Hg-j18"/>
                             <constraint firstItem="TUP-1V-gWE" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="FBb-aY-qQB"/>
                             <constraint firstItem="qUK-ih-Jhu" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="Gqs-FP-lEG"/>
                             <constraint firstItem="qUK-ih-Jhu" firstAttribute="top" secondItem="TUP-1V-gWE" secondAttribute="bottom" type="default" id="HkY-26-ffQ"/>
                             <constraint firstItem="qUK-ih-Jhu" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="J8d-AD-PH9"/>
                             <constraint firstItem="TUP-1V-gWE" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="KRY-rL-R5h"/>
                             <constraint firstItem="DVO-fo-2Cx" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="MQt-A6-YSr"/>
+                            <constraint firstAttribute="trailing" secondItem="ckr-sN-rRc" secondAttribute="trailing" constant="403" id="Mi6-Js-Z6E"/>
                             <constraint firstItem="DVO-fo-2Cx" firstAttribute="bottom" secondItem="qUK-ih-Jhu" secondAttribute="top" type="default" id="NwB-4c-zZh"/>
+                            <constraint firstItem="qUK-ih-Jhu" firstAttribute="centerX" secondItem="o2p-ag-yN2" secondAttribute="centerX" type="default" id="RC1-i7-eyK"/>
                             <constraint firstItem="qUK-ih-Jhu" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="Yvg-2P-Pfu"/>
+                            <constraint firstItem="4wh-yZ-IeQ" firstAttribute="centerX" secondItem="TUP-1V-gWE" secondAttribute="centerX" type="default" id="Zfj-a6-dYR"/>
+                            <constraint firstItem="ckr-sN-rRc" firstAttribute="bottom" secondItem="Nzl-fB-i7G" secondAttribute="bottom" type="default" id="lTd-IR-fQi"/>
+                            <constraint firstItem="Nzl-fB-i7G" firstAttribute="trailing" secondItem="o2p-ag-yN2" secondAttribute="trailing" type="default" id="rTP-Zc-TDA"/>
+                            <constraint firstItem="ckr-sN-rRc" firstAttribute="top" secondItem="4wh-yZ-IeQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="skn-3t-CmP"/>
+                            <constraint firstItem="Nzl-fB-i7G" firstAttribute="centerY" secondItem="o2p-ag-yN2" secondAttribute="centerY" type="default" id="smy-gQ-hUn"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="btnCalib" destination="baR-eN-llf" id="YYR-ZL-oHp"/>
                         <outlet property="btnCamera" destination="UfK-yJ-awY" id="SXG-LS-wUg"/>
                         <outlet property="btnPausePlay" destination="xrs-DJ-1CC" id="80K-NP-AWJ"/>
+                        <outlet property="btnScale" destination="joL-oK-9O1" id="XuX-B1-jR0"/>
+                        <outlet property="busy" destination="o2p-ag-yN2" id="o4K-bj-zjj"/>
                         <outlet property="imageView1" destination="TUP-1V-gWE" id="ycn-X3-uLn"/>
                         <outlet property="pickerView" destination="DVO-fo-2Cx" id="6OI-gq-wfq"/>
+                        <outlet property="scaleLabel" destination="4wh-yZ-IeQ" id="TyN-Jq-VU1"/>
+                        <outlet property="scaleSubmit" destination="ckr-sN-rRc" id="oiG-pg-E7u"/>
+                        <outlet property="scaleText" destination="Nzl-fB-i7G" id="fr7-dl-Zo6"/>
                         <outlet property="showPicker" destination="qBl-lc-Q09" id="MGa-JR-QBc"/>
                         <outlet property="toolbar" destination="qUK-ih-Jhu" id="6VW-zk-IKs"/>
                     </connections>

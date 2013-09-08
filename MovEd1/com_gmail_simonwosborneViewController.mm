@@ -15,7 +15,7 @@
 
 #define kxaxis 0
 #define kyaxis 1
-
+#define calibShots 10
 
 #define DEGREES_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
@@ -35,8 +35,10 @@ using namespace std;
 @synthesize imageView1;
 @synthesize btnCamera;
 @synthesize btnPausePlay;
+@synthesize btnCalib;
 @synthesize toolbar;
 @synthesize showPicker;
+@synthesize scaleText;
 
 @synthesize videoCamera;
 @synthesize process;
@@ -45,6 +47,8 @@ using namespace std;
 @synthesize plotModifierValue;
 @synthesize axisx;
 @synthesize axisy;
+@synthesize calibCamera;
+@synthesize calibCameraShot;
 
 #pragma - Private Methods
 - (void) addPoint:(UITapGestureRecognizer *)recognizer
@@ -152,8 +156,59 @@ using namespace std;
     if (self.pickerView) self.pickerView.hidden = !self.pickerView.hidden;
 }
 
+- (IBAction)scale:(id)sender {
+    self.scaleText.hidden = !self.scaleText.hidden;
+    self.scaleSubmit.hidden = !self.scaleSubmit.hidden;
+    self.scaleLabel.hidden = !self.scaleLabel.hidden;
+}
+
+-(IBAction)scaleSubmit:(id)sender{
+    
+    try{
+        NSLog(@"%@",self.scaleText.text);
+        float scaleNum = [self.scaleText.text floatValue];
+        if (self.scaleText) self.scaleText.hidden = !self.scaleText.hidden;
+        if (self.scaleSubmit) self.scaleSubmit.hidden = !self.scaleSubmit.hidden;
+        if (self.scaleLabel) self.scaleLabel.hidden = !self.scaleLabel.hidden;
+    }
+    catch(NSException *e){
+        self.scaleLabel.text =  @"something";
+    }
+}
+
 - (IBAction)resetArray:(id)sender{
     self.process->CVPlotting::resetPlotPoints();
+}
+
+- (IBAction)calibCamera:(id)sender{
+    if (!calibCamera){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calibrate Camera"
+                                                    message:@"Press Calib to take 10 images."
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+        [alert show];
+        self.calib = new CVCalib();
+    }
+    else{
+        self.calibCameraShot = true;
+        [self.busy startAnimating];
+    }
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (!self.runVideo){
+        [self.videoCamera start];
+        self.runVideo = TRUE;
+    }
+
+    if (buttonIndex == 0) {
+        //self.busy = false;
+        int left = calibShots-self.calib->countStaticImage;
+        self.calibCamera = true;
+        self.btnCalib.title = [NSString stringWithFormat:@"%d Left", left];
+    }
 }
 
 - (void)viewDidLoad
@@ -224,11 +279,16 @@ using namespace std;
     //tracking and plotting variables
     self.plotModifierValue = 2;
     self.process = new CVPlotting();
+    
     self.newPoints = false;
     self.newOrigin = false;
     axisArray = [NSArray arrayWithObjects:@"time", @"x", @"y",@"Ø", @"dØ/dt", @"A", @"dA/dt", nil];
     self.axisx = 1;
     self.axisy = 2;
+    self.calibCameraCount = 0;
+    self.calibCamera = false;
+    self.calibCameraShot = false;
+    [self.busy stopAnimating];
 }
 - (void)viewDidUnload
 {
@@ -262,14 +322,10 @@ using namespace std;
 
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if (component == kxaxis){
-        NSLog(@"x = %d",row);
-//        *selectedItemx = row;
         self.axisx = row;
     }
     if (component == kyaxis){
-        NSLog(@"x = %d",row);
         self.axisy = row;
-//        *selectedItemy = row;
     }
 }
 
@@ -277,13 +333,29 @@ using namespace std;
 #ifdef __cplusplus
 -(void)processImage:(Mat&)image;
 {
-//    NSLog(@"%d",isPad);
+    if (self.calibCamera && self.calibCameraCount < calibShots){
+        if ( self.calibCameraShot ){
+            self.calib->takeStaticImage(image);
+            self.calibCameraCount = self.calib->countStaticImage;
+            self.calibCameraShot = false;
+        }
+    }
+    else if (self.calibCamera && self.calibCameraCount == calibShots){
+        double rms = self.calib->calibrate(image.size());
+        self.calibCamera = false;
+    }
+    [self.busy stopAnimating];
+    
+    if (self.calibCamera == false && self.calibCameraCount == calibShots){
+        self.calib->reMap(image);
+    }
     self.process->cvTracking(image , newPoints);
     self.newPoints = false;
     if (self.process->cvTrackedPoints()>0){
         self.process->setPlotPoints();
         self.process->plotData(image,self.plotModifierValue, self.axisx, self.axisy);
     }
+    
 }
 #endif
 
