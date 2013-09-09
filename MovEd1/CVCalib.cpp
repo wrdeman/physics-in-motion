@@ -78,6 +78,29 @@ void CVCalib::takeStaticImage(cv::Mat image){
     
 }
 
+double CVCalib::getScale(cv::Mat image){
+    cv::Mat grey;
+    std::vector<cv::Point2f> chessCorners;
+    float diff=0;
+    
+    cv::cvtColor(image, grey, CV_RGBA2GRAY);
+    bool found = cv::findChessboardCorners(image, cv::Size(CVCalib::boardSize.height,CVCalib::boardSize.width), chessCorners);
+    if (found){
+        cv::cornerSubPix(grey, chessCorners, cv::Size(5,5), cv::Size(-1,-1), cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 20, 0.5));
+        //            NSLog(@"size = %d area =%d",CVCalib::boardSize.area(),chessCorners.size());
+        if (CVCalib::boardSize.area() == chessCorners.size()){
+            cv::drawChessboardCorners(image, CVCalib::boardSize, chessCorners,found);
+            for (int i = 0; i<CVCalib::boardSize.height; i++){
+                for (int j = 0; j<CVCalib::boardSize.width-1; j++){
+                    diff += chessCorners[i+1].x-chessCorners[i].x;
+                }
+            }
+            return diff/(CVCalib::boardSize.height*(CVCalib::boardSize.width-1));
+        }
+    }
+    return 0;
+}
+
 double CVCalib::calibrate(cv::Size imageSize){
     CVCalib::mustInitUndistort = true;
     std::vector<cv::Mat> rvecs, tvecs;

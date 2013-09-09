@@ -80,11 +80,16 @@ void CVProcessing::cvOrigin(int x, int y){
 }
 
 void CVProcessing::cvDeletePoint(){
-    CVProcessing::points[0].pop_back();
+    if (!CVProcessing::points[0].empty()){
+        CVProcessing::points[0].pop_back();
+        CVProcessing::points[1].pop_back();
+    }
 }
 
 void CVProcessing::cvDeleteOrigin(){
-    CVProcessing::origin2f.pop_back();
+    if (!CVProcessing::origin2f.empty()){
+        CVProcessing::origin2f.pop_back();
+    }
 }
 
 int CVProcessing::cvTrackedPoints(){

@@ -17,6 +17,10 @@
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1031" id="by8-k2-zzU"/>
+                                    <constraint firstAttribute="height" constant="706" id="pJ2-m3-zR3"/>
+                                </constraints>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUK-ih-Jhu">
                                 <items>
@@ -40,6 +44,12 @@
                                             <action selector="scale:" destination="2" id="ctm-sh-kox"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cG8-26-BiU"/>
+                                    <barButtonItem title="Finish" id="3CY-fS-bAO">
+                                        <connections>
+                                            <action selector="finish:" destination="2" id="U1p-el-RCP"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1Z8-Lo-oJz"/>
                                     <barButtonItem title="Reset" id="7jy-6W-imN">
                                         <connections>
@@ -60,10 +70,10 @@
                                     <constraint firstAttribute="width" constant="433" id="Op1-1o-b8e"/>
                                 </constraints>
                             </pickerView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="o2p-ag-yN2"/>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nzl-fB-i7G">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="gel-Aa-uSs"/>
+                                    <constraint firstAttribute="height" constant="44" id="yVz-mk-hOA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -95,24 +105,19 @@
                             <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="o2p-ag-yN2" firstAttribute="centerY" secondItem="TUP-1V-gWE" secondAttribute="centerY" type="user" id="0Ly-8z-Zg2"/>
-                            <constraint firstItem="4wh-yZ-IeQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="433" id="9gR-7e-hQr"/>
+                            <constraint firstItem="qUK-ih-Jhu" firstAttribute="top" secondItem="5" secondAttribute="top" constant="705" id="8vl-0j-Zby"/>
+                            <constraint firstItem="ckr-sN-rRc" firstAttribute="baseline" secondItem="Nzl-fB-i7G" secondAttribute="baseline" type="default" id="9al-0M-wPU"/>
                             <constraint firstItem="Nzl-fB-i7G" firstAttribute="top" secondItem="4wh-yZ-IeQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Cfj-Hg-j18"/>
+                            <constraint firstItem="Nzl-fB-i7G" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="426" id="Cko-yX-gTn"/>
                             <constraint firstItem="TUP-1V-gWE" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="FBb-aY-qQB"/>
                             <constraint firstItem="qUK-ih-Jhu" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="Gqs-FP-lEG"/>
-                            <constraint firstItem="qUK-ih-Jhu" firstAttribute="top" secondItem="TUP-1V-gWE" secondAttribute="bottom" type="default" id="HkY-26-ffQ"/>
                             <constraint firstItem="qUK-ih-Jhu" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="J8d-AD-PH9"/>
                             <constraint firstItem="TUP-1V-gWE" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="KRY-rL-R5h"/>
                             <constraint firstItem="DVO-fo-2Cx" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="MQt-A6-YSr"/>
                             <constraint firstAttribute="trailing" secondItem="ckr-sN-rRc" secondAttribute="trailing" constant="403" id="Mi6-Js-Z6E"/>
                             <constraint firstItem="DVO-fo-2Cx" firstAttribute="bottom" secondItem="qUK-ih-Jhu" secondAttribute="top" type="default" id="NwB-4c-zZh"/>
-                            <constraint firstItem="qUK-ih-Jhu" firstAttribute="centerX" secondItem="o2p-ag-yN2" secondAttribute="centerX" type="default" id="RC1-i7-eyK"/>
-                            <constraint firstItem="qUK-ih-Jhu" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="Yvg-2P-Pfu"/>
                             <constraint firstItem="4wh-yZ-IeQ" firstAttribute="centerX" secondItem="TUP-1V-gWE" secondAttribute="centerX" type="default" id="Zfj-a6-dYR"/>
-                            <constraint firstItem="ckr-sN-rRc" firstAttribute="bottom" secondItem="Nzl-fB-i7G" secondAttribute="bottom" type="default" id="lTd-IR-fQi"/>
-                            <constraint firstItem="Nzl-fB-i7G" firstAttribute="trailing" secondItem="o2p-ag-yN2" secondAttribute="trailing" type="default" id="rTP-Zc-TDA"/>
-                            <constraint firstItem="ckr-sN-rRc" firstAttribute="top" secondItem="4wh-yZ-IeQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="skn-3t-CmP"/>
-                            <constraint firstItem="Nzl-fB-i7G" firstAttribute="centerY" secondItem="o2p-ag-yN2" secondAttribute="centerY" type="default" id="smy-gQ-hUn"/>
+                            <constraint firstItem="Nzl-fB-i7G" firstAttribute="centerY" secondItem="TUP-1V-gWE" secondAttribute="centerY" type="default" id="aDg-aj-mPr"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -120,9 +125,9 @@
                     <connections>
                         <outlet property="btnCalib" destination="baR-eN-llf" id="YYR-ZL-oHp"/>
                         <outlet property="btnCamera" destination="UfK-yJ-awY" id="SXG-LS-wUg"/>
+                        <outlet property="btnFinish" destination="3CY-fS-bAO" id="QO8-9k-b1B"/>
                         <outlet property="btnPausePlay" destination="xrs-DJ-1CC" id="80K-NP-AWJ"/>
                         <outlet property="btnScale" destination="joL-oK-9O1" id="XuX-B1-jR0"/>
-                        <outlet property="busy" destination="o2p-ag-yN2" id="o4K-bj-zjj"/>
                         <outlet property="imageView1" destination="TUP-1V-gWE" id="ycn-X3-uLn"/>
                         <outlet property="pickerView" destination="DVO-fo-2Cx" id="6OI-gq-wfq"/>
                         <outlet property="scaleLabel" destination="4wh-yZ-IeQ" id="TyN-Jq-VU1"/>

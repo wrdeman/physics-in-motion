@@ -37,10 +37,11 @@ private:
     
 public:
     CVPlotting();
-    void setPlotPoints();
+    void setPlotPoints(double time);
     void plotData(cv::Mat image, int plotPosition, int xaxis, int yaxis);
     std::vector<std::vector<float>> plotPoints;
     void resetPlotPoints();
+    std::string outputData(float scaleNum, float scaleNumChess, float time);
 };
 
 

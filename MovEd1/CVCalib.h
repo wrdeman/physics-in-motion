@@ -35,6 +35,7 @@ public:
     CVCalib();
     void takeStaticImage(cv::Mat image);
     double calibrate(cv::Size imageSize);
+    double getScale(cv::Mat image);
     void reMap(cv::Mat image);
     int getNumStatics();
     static int countStaticImage;

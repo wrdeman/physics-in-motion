@@ -16,6 +16,8 @@
 #define kxaxis 0
 #define kyaxis 1
 #define calibShots 10
+#define FPS 30
+
 
 #define DEGREES_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
@@ -36,9 +38,12 @@ using namespace std;
 @synthesize btnCamera;
 @synthesize btnPausePlay;
 @synthesize btnCalib;
+@synthesize btnScale;
 @synthesize toolbar;
 @synthesize showPicker;
 @synthesize scaleText;
+@synthesize scaleNum;
+@synthesize scaleNumChess;
 
 @synthesize videoCamera;
 @synthesize process;
@@ -47,46 +52,55 @@ using namespace std;
 @synthesize plotModifierValue;
 @synthesize axisx;
 @synthesize axisy;
-@synthesize calibCamera;
+@synthesize calibratingCamera;
 @synthesize calibCameraShot;
+@synthesize calibCameraDone;
 
 #pragma - Private Methods
 - (void) addPoint:(UITapGestureRecognizer *)recognizer
 {
-    //To get location of the gesture
-    CGPoint location = [recognizer locationInView:self.imageView1];
-    //convert NSNumber to int
-    int x =[[NSNumber numberWithInteger:location.x] intValue];
-    int y =[[NSNumber numberWithInteger:location.y] intValue];
-    //send to CVProcessing instance    
-    self.process->cvNewPoint(x,y);
-    //declare new points
-    self.newPoints=true;
+    if(!self.calibratingCamera){
+        //To get location of the gesture
+        CGPoint location = [recognizer locationInView:self.imageView1];
+        //convert NSNumber to int
+        int x =[[NSNumber numberWithInteger:location.x] intValue];
+        int y =[[NSNumber numberWithInteger:location.y] intValue];
+        //send to CVProcessing instance    
+        self.process->cvNewPoint(x,y);
+        //declare new points
+        self.newPoints=true;
+    }
 }
 
 - (void) addOrigin:(UILongPressGestureRecognizer *)recognizer
 {
-    //To get location of the gesture
-    CGPoint location = [recognizer locationInView:self.imageView1];
-    //convert NSNumber to int
-    int x =[[NSNumber numberWithInteger:location.x] intValue];
-    int y =[[NSNumber numberWithInteger:location.y] intValue];
-    self.process->cvOrigin(x,y);
-    //declare new points
-    self.newOrigin=true;
+    if(!self.calibratingCamera){
+        //To get location of the gesture
+        CGPoint location = [recognizer locationInView:self.imageView1];
+        //convert NSNumber to int
+        int x =[[NSNumber numberWithInteger:location.x] intValue];
+        int y =[[NSNumber numberWithInteger:location.y] intValue];
+        self.process->cvOrigin(x,y);
+        //declare new points
+        self.newOrigin=true;
+    }
 }
 
 - (void) deletePoint:(UIPinchGestureRecognizer *)recognizer
 {
-    //remove last point from vector in instance of CVProcessing
-    self.process->cvDeletePoint();
+    if(!self.calibratingCamera){
+        //remove last point from vector in instance of CVProcessing
+        self.process->cvDeletePoint();
+    }
 }
 
 - (void) deleteOrigin:(UILongPressGestureRecognizer *)recognizer
 {
-    //remove last point from vector in instance of CVProcessing
-    self.process->cvDeleteOrigin();
-    self.newOrigin=false;
+    if(!self.calibratingCamera){
+        //remove last point from vector in instance of CVProcessing
+        self.process->cvDeleteOrigin();
+        self.newOrigin=false;
+    }
 }
 
 -(void) plotModifier:(UISwipeGestureRecognizer *)gesture
@@ -157,22 +171,24 @@ using namespace std;
 }
 
 - (IBAction)scale:(id)sender {
-    self.scaleText.hidden = !self.scaleText.hidden;
-    self.scaleSubmit.hidden = !self.scaleSubmit.hidden;
-    self.scaleLabel.hidden = !self.scaleLabel.hidden;
+    if (calibCameraDone){
+        self.scaleText.hidden = !self.scaleText.hidden;
+        self.scaleSubmit.hidden = !self.scaleSubmit.hidden;
+        self.scaleLabel.hidden = !self.scaleLabel.hidden;
+    }
 }
 
 -(IBAction)scaleSubmit:(id)sender{
-    
-    try{
+    if (self.scaleText.keyboardType == UIKeyboardTypeNumberPad){
         NSLog(@"%@",self.scaleText.text);
-        float scaleNum = [self.scaleText.text floatValue];
         if (self.scaleText) self.scaleText.hidden = !self.scaleText.hidden;
         if (self.scaleSubmit) self.scaleSubmit.hidden = !self.scaleSubmit.hidden;
         if (self.scaleLabel) self.scaleLabel.hidden = !self.scaleLabel.hidden;
+        //self.scaleLabel.text =  @"Take chessboard image";
+        self.btnCalib.title = @"Take Scale";
     }
-    catch(NSException *e){
-        self.scaleLabel.text =  @"something";
+    else{
+        self.scaleLabel.text =  @"Error: try again";
     }
 }
 
@@ -181,20 +197,75 @@ using namespace std;
 }
 
 - (IBAction)calibCamera:(id)sender{
-    if (!calibCamera){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calibrate Camera"
-                                                    message:@"Press Calib to take 10 images."
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-        [alert show];
-        self.calib = new CVCalib();
+
+    if(!calibCameraDone){
+        if (!calibratingCamera){
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Calibrate Camera"
+                                  message:@"Press Calib to take 10 images."
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+            self.calib = new CVCalib();
+        }
+        else{
+            self.calibCameraShot = true;
+            int left = calibShots-self.calib->countStaticImage-1;
+            if (left != 1){
+                self.btnCalib.title = [NSString stringWithFormat:@"%d Left", left];
+            }
+            else{
+                self.btnCalib.title = @"Done";
+            }
+        }
     }
     else{
+        
         self.calibCameraShot = true;
-        [self.busy startAnimating];
     }
 }
+
+- (IBAction) finish:(id)sender{
+    if(![MFMailComposeViewController canSendMail]){
+        NSString *errorTitle = @"Error";
+        NSString *errorString = @"Not configured to send mail";
+        UIAlertView * errorView = [[UIAlertView alloc]
+                                   initWithTitle:errorTitle
+                                   message:errorString
+                                   delegate:self
+                                   cancelButtonTitle:nil
+                                   otherButtonTitles:@"OK", nil];
+        [errorView show];
+    }
+    else{
+        NSString* result = [NSString stringWithUTF8String:self.process->outputData(self.scaleNum,self.scaleNumChess,(1./FPS)).c_str()];
+        MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
+        mailView.mailComposeDelegate = self;
+        [mailView setSubject:@"Data"];
+        [mailView setMessageBody:result isHTML:NO];
+        [self presentViewController:mailView animated:YES completion:NULL];
+    }
+}
+
+-(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    if(error){
+        NSString * errorTitle = @"Mail Error";
+        NSString * errorDescription = [error localizedDescription];
+        UIAlertView *errorView = [[UIAlertView alloc]
+                                  initWithTitle:errorTitle
+                                  message:errorDescription
+                                  delegate:self
+                                  cancelButtonTitle:nil
+                                  otherButtonTitles:@"OK",nil
+                                  ];
+        [errorView show];
+    }else{
+        
+    }
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
@@ -206,7 +277,7 @@ using namespace std;
     if (buttonIndex == 0) {
         //self.busy = false;
         int left = calibShots-self.calib->countStaticImage;
-        self.calibCamera = true;
+        self.calibratingCamera = true;
         self.btnCalib.title = [NSString stringWithFormat:@"%d Left", left];
     }
 }
@@ -219,53 +290,62 @@ using namespace std;
     [super viewDidLoad];
     
     
-    //-----------------------------------------long tap gesture---------------------------------------------------------------------
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(addOrigin:)];
+    //--------------------long tap gesture---------------------------------
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                               initWithTarget:self action:@selector(addOrigin:)];
     [self.imageView1 addGestureRecognizer:longPress];
     longPress.delegate = self;
     
-    UIPinchGestureRecognizer *pinchPress = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(deleteOrigin:)];
+    UIPinchGestureRecognizer *pinchPress = [[UIPinchGestureRecognizer alloc]
+                                            initWithTarget:self action:@selector(deleteOrigin:)];
     [self.imageView1 addGestureRecognizer:pinchPress];
     pinchPress.delegate = self;
     
-    //-----------------------------------------tap gestures-------------------------------------------------------------------------
+    //-----------------tap gestures------------------------------
     
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPoint:)];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(addPoint:)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.numberOfTouchesRequired = 1;
     [self.imageView1 addGestureRecognizer:singleTap];
     singleTap.delegate = self;
     
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deletePoint:)];
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(deletePoint:)];
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.numberOfTouchesRequired = 1;
     [self.imageView1 addGestureRecognizer:doubleTap];
     [singleTap requireGestureRecognizerToFail:doubleTap];
     doubleTap.delegate = self;
 
-    //-----------------------------------------swipe gestures-----------------------------------------------------------------------
+    //----------------------swipe gestures--------------------------------
     
-    UISwipeGestureRecognizer *leftSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
+    UISwipeGestureRecognizer *leftSwipe=[[UISwipeGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(plotModifier:)];
     leftSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
     [self.imageView1 addGestureRecognizer:leftSwipe];
     leftSwipe.delegate=self;
     
-    UISwipeGestureRecognizer *rightSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
+    UISwipeGestureRecognizer *rightSwipe=[[UISwipeGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(plotModifier:)];
     rightSwipe.direction=UISwipeGestureRecognizerDirectionRight;
     [self.imageView1 addGestureRecognizer:rightSwipe];
     rightSwipe.delegate=self;
 
-    UISwipeGestureRecognizer *upSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
+    UISwipeGestureRecognizer *upSwipe=[[UISwipeGestureRecognizer alloc]
+                                       initWithTarget:self action:@selector(plotModifier:)];
     upSwipe.direction=UISwipeGestureRecognizerDirectionUp;
     [self.imageView1 addGestureRecognizer:upSwipe];
     upSwipe.delegate=self;
     
-    UISwipeGestureRecognizer *downSwipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plotModifier:)];
+    UISwipeGestureRecognizer *downSwipe=[[UISwipeGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(plotModifier:)];
     downSwipe.direction=UISwipeGestureRecognizerDirectionDown;
     [self.imageView1 addGestureRecognizer:downSwipe];
     downSwipe.delegate=self;
 
-    //------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    
     
     // camera + video settings (cap_ios.h in opencv frmaework)
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:imageView1];
@@ -273,7 +353,7 @@ using namespace std;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
     [self.videoCamera.captureVideoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
-    self.videoCamera.defaultFPS = 30;
+    self.videoCamera.defaultFPS = FPS;
     self.videoCamera.grayscaleMode = NO;
     self.imageView1.userInteractionEnabled = YES;
     //tracking and plotting variables
@@ -286,9 +366,12 @@ using namespace std;
     self.axisx = 1;
     self.axisy = 2;
     self.calibCameraCount = 0;
-    self.calibCamera = false;
+    self.calibratingCamera = false;
     self.calibCameraShot = false;
-    [self.busy stopAnimating];
+    self.calibCameraDone = false;
+    self.scaleNumChess = 0;
+    self.scaleNum = 0;
+    self.time = CACurrentMediaTime();
 }
 - (void)viewDidUnload
 {
@@ -333,26 +416,40 @@ using namespace std;
 #ifdef __cplusplus
 -(void)processImage:(Mat&)image;
 {
-    if (self.calibCamera && self.calibCameraCount < calibShots){
-        if ( self.calibCameraShot ){
-            self.calib->takeStaticImage(image);
-            self.calibCameraCount = self.calib->countStaticImage;
-            self.calibCameraShot = false;
+    //if calibrating the camera and #remaining shot count not zero
+    if (self.calibratingCamera){
+        if(calibShots-self.calib->countStaticImage-1 != 0){
+            //if shot is required
+            if ( self.calibCameraShot ){
+                self.calib->takeStaticImage(image);
+                self.calibCameraCount = self.calib->countStaticImage;
+                self.calibCameraShot = false;
+                NSLog(@"count = %d",self.calibCameraCount);
+            }
+        }
+        //else still calibrating camera and 
+        else{
+            double rms = self.calib->calibrate(image.size());
+            self.calibratingCamera = false;
+            self.calibCameraDone = true;
         }
     }
-    else if (self.calibCamera && self.calibCameraCount == calibShots){
-        double rms = self.calib->calibrate(image.size());
-        self.calibCamera = false;
-    }
-    [self.busy stopAnimating];
-    
-    if (self.calibCamera == false && self.calibCameraCount == calibShots){
+    if (self.calibCameraDone){
         self.calib->reMap(image);
+        //if a number of the scale is entered and the chess scale not yet set
+        //need an error message
+         if (self.calibCameraShot){
+                self.scaleNumChess =self.calib->getScale(image);
+             self.calibCameraShot = false;
+        }
     }
+    double time_old = self.time;
+    self.time = CACurrentMediaTime();
     self.process->cvTracking(image , newPoints);
     self.newPoints = false;
     if (self.process->cvTrackedPoints()>0){
-        self.process->setPlotPoints();
+        self.process->setPlotPoints(self.time-time_old);
+//        std::cout<<time_old-self.time<<std::endl;
         self.process->plotData(image,self.plotModifierValue, self.axisx, self.axisy);
     }
     

@@ -16,7 +16,7 @@ CVPlotting::CVPlotting(){
         }
     }
 
-void CVPlotting::setPlotPoints(){
+void CVPlotting::setPlotPoints(double time){
     //array to be set contains t, A, dA/dt, th, d(th)/dt, x, y
     //originally had as map but thought it was pointless. want python dict!
     //define points
@@ -44,8 +44,8 @@ void CVPlotting::setPlotPoints(){
     int size = CVPlotting::plotPoints.size();
     if (size==0){
         
-        CVPlotting::maxPoints[0] = 0;
-        CVPlotting::minPoints[0] = 0;
+        CVPlotting::maxPoints[0] = (float)time;
+        CVPlotting::minPoints[0] = (float)time;
         
         CVPlotting::maxPoints[1] = x;
         CVPlotting::minPoints[1] = x;
@@ -61,7 +61,7 @@ void CVPlotting::setPlotPoints(){
  
     }
     else{
-        CVPlotting::maxPoints[0] = (float)size;
+        CVPlotting::maxPoints[0] = float(time)+CVPlotting::plotPoints[size-1][0];
         
         if (x>CVPlotting::maxPoints[1]){
             CVPlotting::maxPoints[1] = x;
@@ -116,7 +116,7 @@ void CVPlotting::setPlotPoints(){
     }
     //using structure
     //float vals[] = {(float)size, x, y,A,dA,th,dth};
-    CVPlotting::plotPoints.push_back({(float)size, x, y,A,dA,th,dth});
+    CVPlotting::plotPoints.push_back({CVPlotting::maxPoints[0], x, y,A,dA,th,dth});
 }
 
 void CVPlotting::resetPlotPoints(){
@@ -259,3 +259,42 @@ float CVPlotting::dth(float t1, float t0, float dt){
     }
 }
 
+std::string CVPlotting::outputData(float scaleNum, float scaleNumChess, float time){
+    //set to real units
+    //time in seconds
+    //if scaled x, y in whatever unit - otherwide px
+    //if scaled dA unit per second  otherwise px per sec
+    if (scaleNum == 0 || scaleNumChess == 0){
+        scaleNum = 1;
+        scaleNumChess = 1;
+    }
+    
+    std::ostringstream s;
+    int size = NUM_PLOT;
+    if (CVProcessing::origin2f.empty()){
+        size = 3;
+    }
+    for (int i = 0; i < CVPlotting::plotPoints.size(); i++){
+        s << CVPlotting::plotPoints[i][0]*time << "\t";
+        for (int j = 1; j < size; j++){
+            if (j == 1 || j == 2){
+                s << CVPlotting::plotPoints[i][j]*scaleNum/scaleNumChess << "\t";
+            }
+            if (j == 3){
+                s << CVPlotting::plotPoints[i][j]*scaleNum/scaleNumChess << "\t";
+            }
+            if (j == 4){
+                s << CVPlotting::plotPoints[i][j]*scaleNum/(scaleNumChess*time) << "\t";
+            }
+            if (j == 5){
+                s << CVPlotting::plotPoints[i][j] << "\t";
+            }
+            if (j == 6){
+                s << CVPlotting::plotPoints[i][j]/(time) << "\t";
+            }
+            
+        }
+        s << std::endl;
+    }
+    return s.str();
+}
