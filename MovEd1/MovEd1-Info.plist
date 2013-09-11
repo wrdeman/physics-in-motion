@@ -15,6 +15,10 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>logo.png</string>
+				<string>logo_57_57.png</string>
+				<string>logo_114_114.png</string>
+				<string>logo_72_72.png</string>
+				<string>logo_144_144.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

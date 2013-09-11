@@ -84,10 +84,5 @@ using namespace cv;
 -(void) deletePoint;
 -(void) deleteOrigin;
 -(void) plotModifier;
--(BOOL) isPad;
-
-
-//-(BOOL)shouldAutorotate;
-//-(NSInteger)supportedInterfaceOrientations;
 
 @end

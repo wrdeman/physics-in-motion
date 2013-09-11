@@ -25,7 +25,7 @@ private:
     cv::Point2f newpoint2f;
     cv::Size subPixWinSize, winSize;
     cv::TermCriteria termcrit;
-    void cvAddPoint();
+    void cvAddPoint(bool isPad);
     std::vector<uchar> status;
     std::vector<float> err;
 
@@ -39,9 +39,9 @@ public:
     void cvNewPoint(int x, int y);
     void cvDeletePoint();
     void cvDeleteOrigin();
-    void cvTracking(cv::Mat image ,bool newPoints);
+    void cvTracking(cv::Mat image ,bool newPoints, bool isPad);
     int cvTrackedPoints();
-    void cvOrigin(int x, int y);
+    void cvOrigin(int x, int y, bool isPad);
     std::vector<cv::Point2f> points[2];
     std::vector<int> newpoint;
     std::vector<cv::Point2f> origin2f;
