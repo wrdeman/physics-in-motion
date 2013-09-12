@@ -70,7 +70,7 @@
 		F4CAEAEA17E09F54004EB9D2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		F4CAEAEC17E09F83004EB9D2 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		F4CAEAEE17E09F92004EB9D2 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
-		F4D17468172EE38F00169795 /* MovEd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovEd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D17468172EE38F00169795 /* Physics in Motion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Physics in Motion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D1746B172EE38F00169795 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F4D1746D172EE38F00169795 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F4D1746F172EE38F00169795 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -153,7 +153,7 @@
 		F4D17469172EE38F00169795 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F4D17468172EE38F00169795 /* MovEd1.app */,
+				F4D17468172EE38F00169795 /* Physics in Motion.app */,
 				F4D17491172EE39000169795 /* MovEd1Tests.octest */,
 			);
 			name = Products;
@@ -257,7 +257,7 @@
 			);
 			name = MovEd1;
 			productName = MovEd1;
-			productReference = F4D17468172EE38F00169795 /* MovEd1.app */;
+			productReference = F4D17468172EE38F00169795 /* Physics in Motion.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F4D17490172EE39000169795 /* MovEd1Tests */ = {
@@ -492,7 +492,7 @@
 				HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
 				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Physics in Motion";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -513,7 +513,7 @@
 				HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
 				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Physics in Motion";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
