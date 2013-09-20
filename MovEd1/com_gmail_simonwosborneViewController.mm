@@ -436,6 +436,7 @@ using namespace std;
     self.scaleNumChess = 0;
     self.scaleNum = 0;
     self.time = CACurrentMediaTime();
+
 }
 
 - (void)viewDidUnload
@@ -523,7 +524,10 @@ using namespace std;
     //we have tracked points then plot the data
     if (self.process->cvTrackedPoints()>0){
         self.process->setPlotPoints(self.time-time_old);
-        self.process->plotData(image,self.plotModifierValue, self.axisx, self.axisy);
+        //fraction of available screen 44 is the height
+        //according to the storyboard for ipad and iphone
+        float availableScreen= 1. - (44./self.imageView1.bounds.size.height);
+        self.process->plotData(image,self.plotModifierValue, self.axisx, self.axisy, availableScreen);
     }
     
 }

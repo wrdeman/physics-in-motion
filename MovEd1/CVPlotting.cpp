@@ -143,17 +143,15 @@ void CVPlotting::resetPlotPoints(){
  the plotted points are then fitted into this quadrant
  
  */
-void CVPlotting::plotData(cv::Mat image, int plotPosition, int xaxis, int yaxis){
+void CVPlotting::plotData(cv::Mat image, int plotPosition, int xaxis, int yaxis, float toolBarHeight){
     float xdat,ydat;
     //size of the opencv frame
     cv::Size cvwidlen=CVProcessing::gray.size();
 
-    //the parameters y_cvFrame and y_offset are hardcoded for LandscapeLeft
-    //this is a fudge because iOS and CV have different image sizes
-    //in an ideal world this world be dynamically set but am I that fussed of PoC?
     int x_cvFrame = cvwidlen.width;
-    int y_cvFrame = int(cvwidlen.height);
+    int y_cvFrame = int(cvwidlen.height * toolBarHeight);
     
+    float sizeToolbarHeight = (cvwidlen.height * (1.- toolBarHeight));
     
     //size of half the opencv frame
     float xx2=float((x_cvFrame)/2);
@@ -171,10 +169,10 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition, int xaxis, int yaxis)
         xp=0;
         if (plotPosition>3){
             //4
-            yp = -dy;
+            yp = -dy+sizeToolbarHeight;
         }
         else{
-            yp = 0;
+            yp = 0+sizeToolbarHeight;
         }
     }
     else{
@@ -182,10 +180,10 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition, int xaxis, int yaxis)
         xp=dx;
         if (plotPosition>1){
             //1
-            yp = -dy;
+            yp = -dy+sizeToolbarHeight;
         }
         else{
-            yp = 0;
+            yp = 0+sizeToolbarHeight;
         }
     }
     //-----------------------------
