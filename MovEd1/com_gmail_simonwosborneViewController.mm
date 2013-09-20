@@ -83,7 +83,7 @@ using namespace std;
         //convert NSNumber to int
         int x =[[NSNumber numberWithInteger:location.x] intValue];
         int y =[[NSNumber numberWithInteger:location.y] intValue];
-        self.process->cvOrigin(x,y,IPAD);
+        self.process->cvOrigin(x,y,(int)self.imageView1.bounds.size.width, (int)self.imageView1.bounds.size.height);
         //declare new points
         self.newOrigin=true;
     }
@@ -313,6 +313,32 @@ using namespace std;
     }
 }
 
+/*!
+ this switches the orientation 
+ commented out for the time being
+ */
+/*-(bool) shouldAutorotate{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+        
+    if (orientation==UIDeviceOrientationPortrait) {
+        [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationPortrait)];
+        NSLog(@"portrait");
+            
+    }
+    if (orientation==UIDeviceOrientationLandscapeLeft) {
+        NSLog(@"left");
+        [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationLandscapeRight)];
+    }
+    if (orientation==UIDeviceOrientationLandscapeRight) {
+        NSLog(@"right");
+        [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationLandscapeLeft)];
+    }
+        return YES;
+}
+*/
+
+
+
 - (void)viewDidLoad
 {
     [self.pickerView setDelegate:self];
@@ -387,6 +413,7 @@ using namespace std;
     self.videoCamera.defaultFPS = FPS;
     self.videoCamera.grayscaleMode = NO;
     
+    
     //set the imageview to accept gestures
     self.imageView1.userInteractionEnabled = YES;
 
@@ -410,6 +437,7 @@ using namespace std;
     self.scaleNum = 0;
     self.time = CACurrentMediaTime();
 }
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -489,7 +517,7 @@ using namespace std;
 
     //track the points
     //if new add and reset newpoints to false
-    self.process->cvTracking(image , newPoints,IPAD);
+    self.process->cvTracking(image , newPoints, (int)self.imageView1.bounds.size.width, (int)self.imageView1.bounds.size.height);
     self.newPoints = false;
 
     //we have tracked points then plot the data

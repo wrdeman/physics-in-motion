@@ -491,6 +491,7 @@
 				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				PRODUCT_NAME = "Physics in Motion";
 				PROVISIONING_PROFILE = "";
@@ -512,6 +513,7 @@
 				GCC_PREFIX_HEADER = "MovEd1/MovEd1-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				INFOPLIST_FILE = "MovEd1/MovEd1-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "/Users/simon/opencv_ios/**";
 				PRODUCT_NAME = "Physics in Motion";
 				PROVISIONING_PROFILE = "";

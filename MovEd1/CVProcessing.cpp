@@ -5,15 +5,7 @@
 //  Created by Simon on 26/08/2013.
 //  Copyright (c) 2013 Simon Osborne. All rights reserved.
 //
-//#define SCALING_FACTOR_X (1024.0/480.0)
-//#define SCALING_FACTOR_Y (768.0/360.0)
 
-//these are the width and heights of the imageview - could do this better.
-//will have to iPhone5 has bigger screen
-#define IPAD_X 1024
-#define IPAD_Y 706
-#define IPHONE_Y 258
-#define IPHONE_X 568
 #include "CVProcessing.h"
 
 CVProcessing::CVProcessing(){
@@ -37,9 +29,9 @@ void CVProcessing::cvNewPoint(int x, int y){
  this transforms the iOS coordinate to the opencv coordinate
  then uses cornersubpix to get better position
  */
-void CVProcessing::cvAddPoint(bool isPad){
+void CVProcessing::cvAddPoint(int xtrans, int ytrans){
     
-    /*
+    /* this is for landscape left
      iOS
     (0,0)      (1024,0)
      -------------
@@ -66,18 +58,9 @@ void CVProcessing::cvAddPoint(bool isPad){
     int y = CVProcessing::newpoint[1];
     //define a c++ vector for points needed for opencv
     std::vector<cv::Point2f> tmp;
-    int xtrans, ytrans;
+
     
-    if (isPad){
-        xtrans = IPAD_X;
-        ytrans = IPAD_Y;
-    }
-    else{
-        xtrans = IPHONE_X;
-        ytrans = IPHONE_Y;
-    }
-    
-    //THESE TRANSFORMATIONS WILL NEED TO
+    //THESE TRANSFORMATIONS WILL NEED TO CHANGE ON ROTATION
     x=xtrans-x;
     y=ytrans-y;
     //these are the points that go into opencv
@@ -96,21 +79,12 @@ void CVProcessing::cvAddPoint(bool isPad){
  from the long press gesture
  this is simply where one presses but transformed into opencv
  */
-void CVProcessing::cvOrigin(int x, int y, bool isPad){
+void CVProcessing::cvOrigin(int x, int y, int xtrans, int ytrans){
     cv::Size cvwidlen=CVProcessing::gray.size();
     //define a c++ vector for points needed for opencv
     std::vector<cv::Point2f> origin2f;
-    int xtrans, ytrans;
 
-    if (isPad){
-        xtrans = IPAD_X;
-        ytrans = IPAD_Y;
-    }
-    else{
-        xtrans = IPHONE_X;
-        ytrans = IPHONE_Y;
-    }
-    //THESE TRANSFORMATIONS WILL NEED TO
+ //THESE TRANSFORMATIONS WILL NEED TO CHANGE ON ROTATION
     x=xtrans-x;
     y=ytrans-y;
     //these are the points that go into opencv
@@ -147,12 +121,12 @@ int CVProcessing::cvTrackedPoints(){
  
  see opencv documentation for more details - opencv.org and samples/cpp/lk_demo.cpp 
  */
-void CVProcessing::cvTracking(cv::Mat image, bool newPoints, bool isPad){
+void CVProcessing::cvTracking(cv::Mat image, bool newPoints, int xtrans, int ytrans){
     cv::cvtColor(image, CVProcessing::gray, CV_RGBA2GRAY);
     size_t i, k;
     
     if (newPoints){
-        CVProcessing::cvAddPoint(isPad);
+        CVProcessing::cvAddPoint( xtrans,  ytrans);
     }
     if (CVProcessing::cvTrackedPoints()!=0){
         if (!CVProcessing::previous.empty()){

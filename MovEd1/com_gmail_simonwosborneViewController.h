@@ -84,5 +84,6 @@ using namespace cv;
 -(void) deletePoint;
 -(void) deleteOrigin;
 -(void) plotModifier;
+//-(bool) shouldAutorotate;
 
 @end

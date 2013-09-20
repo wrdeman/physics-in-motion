@@ -32,7 +32,7 @@ void CVCalib::takeStaticImage(cv::Mat image){
     //this finds the board size which is now fixed
     //othewise the calibration won't work (I think)
 
-        if (CVCalib::countStaticImage == 1){
+    if (CVCalib::countStaticImage == 1){
             for (int i = 3; i < 8; i++) {
                     for (int j = 3; j < 8; j++){
                         found = cv::findChessboardCorners(image, cv::Size(i,j), chessCorners);
@@ -44,7 +44,9 @@ void CVCalib::takeStaticImage(cv::Mat image){
                         }
                     }
             }
-        found = cv::findChessboardCorners(image, cv::Size(CVCalib::boardSize.height,CVCalib::boardSize.width), chessCorners);
+            if (CVCalib::boardSize.height != 0 || CVCalib::boardSize.width != 0) {
+                found = cv::findChessboardCorners(image, cv::Size(CVCalib::boardSize.height,CVCalib::boardSize.width), chessCorners);
+            }
         //3D points
         
     }
