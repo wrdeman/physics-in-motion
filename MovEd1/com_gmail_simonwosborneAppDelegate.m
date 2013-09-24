@@ -7,6 +7,7 @@
 //
 
 #import "com_gmail_simonwosborneAppDelegate.h"
+#import "com_gmail_simonwosborneViewController.h"
 
 @implementation com_gmail_simonwosborneAppDelegate
 

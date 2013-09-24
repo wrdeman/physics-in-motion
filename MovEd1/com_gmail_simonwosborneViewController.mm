@@ -91,7 +91,7 @@ using namespace std;
 /*!
  delete a tracked pointed
  */
-- (void) deletePoint:(UIPinchGestureRecognizer *)recognizer
+- (void) deletePoint:(UITapGestureRecognizer *)recognizer
 {
     if(!self.calibratingCamera){
         //remove last point from vector in instance of CVProcessing
@@ -102,7 +102,7 @@ using namespace std;
 /*!
  delete the origin
  */
-- (void) deleteOrigin:(UILongPressGestureRecognizer *)recognizer
+- (void) deleteOrigin:(UIPinchGestureRecognizer *)recognizer
 {
     if(!self.calibratingCamera){
         //remove last point from vector in instance of CVProcessing
@@ -252,49 +252,8 @@ using namespace std;
     }
 }
 
-/*!
- get action to finish and email results
- */
-- (IBAction) finish:(id)sender{
-    if(![MFMailComposeViewController canSendMail]){
-        NSString *errorTitle = @"Error";
-        NSString *errorString = @"Not configured to send mail";
-        UIAlertView * errorView = [[UIAlertView alloc]
-                                   initWithTitle:errorTitle
-                                   message:errorString
-                                   delegate:self
-                                   cancelButtonTitle:nil
-                                   otherButtonTitles:@"OK", nil];
-        [errorView show];
-    }
-    else{
-        NSString* result = [NSString stringWithUTF8String:self.process->outputData(self.scaleNum,self.scaleNumChess,(1./FPS)).c_str()];
-        MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
-        mailView.mailComposeDelegate = self;
-        [mailView setSubject:@"Data"];
-        [mailView setMessageBody:result isHTML:NO];
-        [self presentViewController:mailView animated:YES completion:NULL];
-    }
-}
-
--(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
-    if(error){
-        NSString * errorTitle = @"Mail Error";
-        NSString * errorDescription = [error localizedDescription];
-        UIAlertView *errorView = [[UIAlertView alloc]
-                                  initWithTitle:errorTitle
-                                  message:errorDescription
-                                  delegate:self
-                                  cancelButtonTitle:nil
-                                  otherButtonTitles:@"OK",nil
-                                  ];
-        [errorView show];
-    }else{
-        
-    }
-    [controller dismissViewControllerAnimated:YES completion:NULL];
-}
-
+ 
+ 
 /*!
  get action of alertview re the calibration of the camera
  */
@@ -317,9 +276,19 @@ using namespace std;
  this switches the orientation 
  commented out for the time being
  */
-/*-(bool) shouldAutorotate{
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeLeft;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+-(BOOL) shouldAutorotate{
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-        
+
     if (orientation==UIDeviceOrientationPortrait) {
         [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationPortrait)];
         NSLog(@"portrait");
@@ -333,9 +302,9 @@ using namespace std;
         NSLog(@"right");
         [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationLandscapeLeft)];
     }
+ 
         return YES;
 }
-*/
 
 
 
@@ -453,6 +422,10 @@ using namespace std;
     // Dispose of any resources that can be recreated.
 }
 
+-(CVPlotting*) getProcess{
+    return self.process;
+}
+
 #pragma mark
 #pragma mark Picker Data Source Methods
 //methods to get the axis from the picker views
@@ -483,7 +456,6 @@ using namespace std;
 #ifdef __cplusplus
 -(void)processImage:(Mat&)image;
 {
-
     
     //if calibrating the camera and #remaining shot count not zero
     if (self.calibratingCamera){

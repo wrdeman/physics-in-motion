@@ -65,8 +65,8 @@ using namespace cv;
 @property (strong, nonatomic) IBOutlet UILabel *scaleLabel;
 
 
-@property (nonatomic, assign) CVPlotting * process;
-@property (nonatomic, assign) CVCalib * calib;
+@property (nonatomic, assign) CVPlotting *process;
+@property (nonatomic, assign) CVCalib *calib;
 @property (nonatomic, retain) CALayer *customPreviewLayer;
 @property (nonatomic,assign) int axisx;
 @property (nonatomic,assign) int axisy;
@@ -84,6 +84,8 @@ using namespace cv;
 -(void) deletePoint;
 -(void) deleteOrigin;
 -(void) plotModifier;
-//-(bool) shouldAutorotate;
+-(CVPlotting*) getProcess;
+//-(BOOL) shouldAutorotate;
+//- (NSUInteger)supportedInterfaceOrientations;
 
 @end

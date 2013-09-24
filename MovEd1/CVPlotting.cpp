@@ -8,6 +8,12 @@
 
 #include "CVPlotting.h"
 
+/*
+ plotPoints is static so that I can pass it to plotViewController
+ otherwise
+ */
+std::vector<std::vector<float>> CVPlotting::plotPoints;;
+
 CVPlotting::CVPlotting(){
     //{"t","x","y","A","dA","th","dth"}
         for (int i = 0; i < NUM_PLOT; i++){
@@ -320,3 +326,49 @@ std::string CVPlotting::outputData(float scaleNum, float scaleNumChess, float ti
     }
     return s.str();
 }
+
+
+std::vector<std::vector<float> > CVPlotting::outputPlotData(float scaleNum, float scaleNumChess, float time){
+    //set to real units
+    //time in seconds
+    //if scaled x, y in whatever unit - otherwide px
+    //if scaled dA unit per second  otherwise px per sec
+    // why create another array? it is derived data - curse you physics training!
+ //   std::vector<float> inner;
+    std::vector<std::vector<float> > arrayOfPoints;
+    
+    if ((int)scaleNum == 0 || (int)scaleNumChess == 0){
+        scaleNum = 1;
+        scaleNumChess = 1;
+    }
+    
+    int size = NUM_PLOT;
+    if (CVProcessing::origin2f.empty()){
+        size = 3;
+    }
+    for (int i = 0; i < CVPlotting::plotPoints.size(); i++){
+        std::vector<float> inner;
+        inner.push_back(CVPlotting::plotPoints[i][0]);
+        for (int j = 1; j < size; j++){
+            if (j == 1 || j == 2){
+                inner.push_back(CVPlotting::plotPoints[i][j]*scaleNum/scaleNumChess);
+            }
+            if (j == 3){
+                inner.push_back(CVPlotting::plotPoints[i][j]*scaleNum/scaleNumChess);
+            }
+            if (j == 4){
+                inner.push_back(CVPlotting::plotPoints[i][j]*scaleNum/(scaleNumChess*time));
+            }
+            if (j == 5){
+                inner.push_back(CVPlotting::plotPoints[i][j]);
+            }
+            if (j == 6){
+                inner.push_back(CVPlotting::plotPoints[i][j]/(time));
+            }
+            
+        }
+        arrayOfPoints.push_back(inner);
+    }
+    return arrayOfPoints;
+}
+

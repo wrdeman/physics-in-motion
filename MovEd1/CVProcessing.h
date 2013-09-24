@@ -12,10 +12,10 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-#import <opencv2/highgui/cap_ios.h>
-#import "opencv2/highgui/highgui.hpp"
-#import "opencv2/imgproc/imgproc.hpp"
-#import "opencv2/video/tracking.hpp"
+#include <opencv2/highgui/cap_ios.h>
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/video/tracking.hpp"
 //#import "CVPlotting.h"
 //using namespace std;
 
