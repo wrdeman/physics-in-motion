@@ -12,7 +12,10 @@
 #import <vector>
 
 @interface plotViewController : com_gmail_simonwosborneViewController<UIPickerViewDelegate,UIPickerViewDataSource,MFMailComposeViewControllerDelegate,CPTPlotDataSource>{
+    NSArray *axisPlotArray;
     IBOutlet UIBarButtonItem * btnEmail;
+    IBOutlet UIBarButtonItem * btnAxis;
+//    IBOutlet UIPickerView * plotPicker;
     NSMutableArray *dataArray;
     NSMutableArray *xlim;
     NSMutableArray *ylim;
@@ -20,8 +23,10 @@
     CPTXYGraph *graph;
 }
 - (IBAction)btnEmail:(id)sender;
+- (IBAction)btnAxis:(id)sender;
 
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *btnAxis;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnEmail;
 @property (strong, nonatomic) IBOutlet UIPickerView * plotPicker;
 @property (strong, retain) IBOutlet CPTGraphHostingView *hostView;

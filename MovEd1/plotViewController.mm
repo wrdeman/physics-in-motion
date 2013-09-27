@@ -7,8 +7,8 @@
 //
 
 //not good!
-#define kxaxis 0
-#define kyaxis 1
+#define plotxaxis 0
+#define plotyaxis 1
 #define FPS 30
 
 #import "plotViewController.h"
@@ -19,6 +19,7 @@
 
 @implementation plotViewController
 @synthesize btnEmail;
+@synthesize btnAxis;
 @synthesize plotPicker;
 @synthesize plotAxisx;
 @synthesize plotAxisy;
@@ -29,32 +30,26 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        }
+
+    }
     return self;
 }
 
 
 - (void)viewDidLoad
 {
+    [self.plotPicker setDelegate:self];
+    [self.plotPicker setDataSource:self];
+
+    //    self.plotPicker.dataSource = self;
+//    self.plotPicker.delegate = self;
     [super viewDidLoad];
-    [self.pickerView setDelegate:self];
-    [self.pickerView setDataSource:self];
-    
+
     //-----------------tap gestures------------------------------
     
-    
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]
-                                         initWithTarget:self action:@selector(showPlotPicker:)];
-    doubleTap.numberOfTapsRequired = 2;
-    doubleTap.numberOfTouchesRequired = 1;
-    [self.hostView addGestureRecognizer:doubleTap];
- //   [singleTap requireGestureRecognizerToFail:doubleTap];
-    doubleTap.delegate = self;
-    
-	
     self.hostView.userInteractionEnabled = YES;
     
-    axisArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"dA/dt", @"Ø", @"dØ/dt", nil];
+    axisPlotArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"dA/dt", @"Ø", @"dØ/dt", nil];
     self.plotAxisx = 1;
     self.plotAxisy = 2;
     //array for data
@@ -71,6 +66,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)btnAxis:(id)sender {
+ if (self.plotPicker) self.plotPicker.hidden = !self.plotPicker.hidden;
 }
 
 ///Move to new storyboard
@@ -117,12 +116,6 @@
     [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void) showPlotPicker:(UITapGestureRecognizer *)recognizer
-{
-    NSLog(@"here");
-    self.plotPicker.hidden = !self.plotPicker.hidden;
-}
-
 
 #pragma mark
 #pragma mark Picker Data Source Methods
@@ -131,24 +124,30 @@
     return 2;
 }
 //both the same length
--(NSInteger)plotPicker:(UIPickerView *)plotPicker numberOfRowsInComponent:(NSInteger)component{
-    return [axisArray count];
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [axisPlotArray count];
 }
 
--(NSString *)plotPicker:(UIPickerView*)plotPicker titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    if (component == kxaxis)
-        return [axisArray objectAtIndex:row];
-    return [axisArray objectAtIndex:row];
+-(NSString *)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    if (component == plotxaxis)
+        return [axisPlotArray objectAtIndex:row];
+    return [axisPlotArray objectAtIndex:row];
 }
 
--(void) pickerView:(UIPickerView *)plotPicker didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    if (component == kxaxis){
+#pragma mark -
+#pragma mark PickerView Delegate
+-(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    NSLog(@"row = %d",row);
+    if (component == plotxaxis){
         self.plotAxisx = row;
     }
-    if (component == kyaxis){
+    if (component == plotyaxis){
         self.plotAxisy = row;
     }
+    [self plotData];
 }
+
+
 
 //where the data is taken from CVPlotting object in NSMutable array for coreplot
 //define max and min here.

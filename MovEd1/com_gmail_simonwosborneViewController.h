@@ -12,8 +12,8 @@
 #import "opencv2/highgui/highgui.hpp"
 #import "opencv2/imgproc/imgproc.hpp"
 #import "opencv2/video/tracking.hpp"
-#include "CVPlotting.h"
-#include "CVCalib.h"
+#import "CVPlotting.h"
+#import "CVCalib.h"
 #import <QuartzCore/CAAnimation.h>
 
 using namespace cv;

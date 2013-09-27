@@ -23,8 +23,6 @@
 #include "CVProcessing.h"
 #include "CVPlotting.h"
 
-using namespace std;
-
 @interface com_gmail_simonwosborneViewController ()
 
 @end
