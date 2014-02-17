@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-DY-OHc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-DY-OHc">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -10,14 +10,14 @@
             <objects>
                 <viewController id="49e-DY-OHc" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aw4-qN-JJV"/>
-                        <viewControllerLayoutGuide type="bottom" id="lPN-Ge-P6u"/>
+                        <viewControllerLayoutGuide type="top" id="9E2-aB-yXG"/>
+                        <viewControllerLayoutGuide type="bottom" id="28M-nj-zq4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kHc-le-zu7">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background_480x320.png" translatesAutoresizingMaskIntoConstraints="NO" id="shJ-3e-YBd">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" image="background_480x320.png" translatesAutoresizingMaskIntoConstraints="NO" id="shJ-3e-YBd">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
@@ -38,154 +38,166 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-858" y="-37"/>
+            <point key="canvasLocation" x="-2088" y="-305"/>
         </scene>
         <!--Com gmail simonwosborne View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="com_gmail_simonwosborneViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jCZ-rg-ZCU"/>
-                        <viewControllerLayoutGuide type="bottom" id="AoC-0s-5il"/>
+                        <viewControllerLayoutGuide type="top" id="jfc-lj-Xuz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gdn-kr-1DY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3">
+                    <view key="view" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="VxB-gE-j3y">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mA1-W6-YPP">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="6Le-zu-X9V"/>
-                                </constraints>
+                            <imageView autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mtw-BE-Ld9">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dj9-xj-n9H">
-                                <rect key="frame" x="0.0" y="276" width="568" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="RMg-5Z-KPO">
+                                <rect key="frame" x="0.0" y="276" width="480" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="play" id="ZsB-0w-rt8">
+                                    <barButtonItem systemItem="play" id="9Q5-BO-PQ3">
                                         <connections>
-                                            <action selector="actionPausePlay:" destination="2" id="fZ5-wa-4K4"/>
+                                            <action selector="actionPausePlay:" destination="2" id="jnl-Tt-gb1"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="camera" id="vZe-76-WmU">
+                                    <barButtonItem systemItem="camera" id="DZI-5v-07f">
                                         <connections>
-                                            <action selector="actionCamera:" destination="2" id="aa4-a0-SGP"/>
+                                            <action selector="actionCamera:" destination="2" id="Vq7-RS-q7J"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Calib" id="MSc-cf-Hj5">
+                                    <barButtonItem title="Calib" id="rIs-mj-cEc">
                                         <connections>
-                                            <action selector="calibCamera:" destination="2" id="UJz-eq-xhE"/>
+                                            <action selector="calibCamera:" destination="2" id="oMD-eZ-ddC"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Scale" id="xIK-Pk-Igu">
+                                    <barButtonItem title="Scale" id="jk3-WZ-mFV">
                                         <connections>
-                                            <action selector="scale:" destination="2" id="Fj7-v3-clP"/>
+                                            <action selector="scale:" destination="2" id="Pcj-ug-zKN"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nuX-3y-inu"/>
-                                    <barButtonItem title="Finish" id="Py4-UI-DCg">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3XF-gc-gSc"/>
+                                    <barButtonItem title="End" id="Qhn-AM-OHx">
                                         <connections>
-                                            <action selector="finish:" destination="2" id="i8r-kg-RB4"/>
-                                            <segue destination="GMo-Tb-v1J" kind="modal" id="C9B-eh-u0R"/>
+                                            <action selector="finish:" destination="2" id="M7l-63-Snc"/>
+                                            <segue destination="GMo-Tb-v1J" kind="modal" id="vsm-ae-lD1"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bZ0-15-Ueg"/>
-                                    <barButtonItem title="Reset" id="Bzi-HJ-e6v">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="IhL-hK-byV"/>
+                                    <barButtonItem title="Reset" id="J17-Gg-x7J">
                                         <connections>
-                                            <action selector="resetArray:" destination="2" id="VIN-Ct-ZrP"/>
+                                            <action selector="resetArray:" destination="2" id="oEb-Gn-NCz"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Axis" id="dXn-Ov-p8O">
+                                    <barButtonItem title="Axis" id="nNF-sY-7ej">
                                         <connections>
-                                            <action selector="showPicker:" destination="2" id="k3w-9M-1yL"/>
+                                            <action selector="showPicker:" destination="2" id="Maf-D7-0e6"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <pickerView hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWi-y5-NNC">
-                                <rect key="frame" x="363" y="52" width="205" height="216"/>
-                                <color key="backgroundColor" red="0.81224091200000004" green="0.81224091200000004" blue="0.81224091200000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="205" id="muu-AS-FRI"/>
-                                </constraints>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfN-M4-CD9">
+                                <rect key="frame" x="275" y="113" width="205" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </pickerView>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCl-Q5-TIz">
-                                <rect key="frame" x="84" y="130" width="96" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="96" id="Ems-U2-yAm"/>
-                                </constraints>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7UJ-ST-24M">
+                                <rect key="frame" x="192" y="113" width="96" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWh-Uj-4RS">
-                                <rect key="frame" x="84" y="205" width="97" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="T35-6g-HA0"/>
-                                </constraints>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pym-sf-AsY">
+                                <rect key="frame" x="192" y="197" width="97" height="30"/>
                                 <state key="normal" title="OK">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="scaleSubmit:" destination="2" eventType="touchUpInside" id="DSa-Zi-ztA"/>
+                                    <action selector="scaleSubmit:" destination="2" eventType="touchUpInside" id="EbW-Fa-GVW"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Size of Chess Square" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlA-6G-i8X">
-                                <rect key="frame" x="63" y="61" width="165" height="21"/>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Size of Chess Square" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4P-hm-tqk">
+                                <rect key="frame" x="158" y="62" width="165" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="JWi-y5-NNC" secondAttribute="trailing" id="1VH-cW-JsS"/>
-                            <constraint firstItem="xWh-Uj-4RS" firstAttribute="leading" secondItem="NCl-Q5-TIz" secondAttribute="trailing" constant="25" id="3nn-MI-pQZ"/>
-                            <constraint firstItem="NCl-Q5-TIz" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="153" id="3zY-9L-IoU"/>
-                            <constraint firstItem="NCl-Q5-TIz" firstAttribute="top" secondItem="NlA-6G-i8X" secondAttribute="bottom" constant="15" id="9tJ-aS-Se2"/>
-                            <constraint firstItem="NlA-6G-i8X" firstAttribute="top" secondItem="jCZ-rg-ZCU" secondAttribute="bottom" constant="73" id="EWj-cX-TkR"/>
-                            <constraint firstItem="Dj9-xj-n9H" firstAttribute="trailing" secondItem="JWi-y5-NNC" secondAttribute="trailing" id="FCx-QT-vD7"/>
-                            <constraint firstItem="xWh-Uj-4RS" firstAttribute="centerY" secondItem="NCl-Q5-TIz" secondAttribute="centerY" id="FNb-YK-09i"/>
-                            <constraint firstItem="xWh-Uj-4RS" firstAttribute="top" secondItem="NlA-6G-i8X" secondAttribute="bottom" constant="22" id="PaM-K6-5m6"/>
-                            <constraint firstItem="mA1-W6-YPP" firstAttribute="top" secondItem="3" secondAttribute="top" id="Rfn-W9-b2e"/>
-                            <constraint firstItem="JWi-y5-NNC" firstAttribute="top" secondItem="jCZ-rg-ZCU" secondAttribute="bottom" constant="32" id="VHa-Zu-9ge"/>
-                            <constraint firstItem="mA1-W6-YPP" firstAttribute="bottom" secondItem="Dj9-xj-n9H" secondAttribute="bottom" id="WBe-K6-BVL"/>
-                            <constraint firstItem="Dj9-xj-n9H" firstAttribute="leading" secondItem="mA1-W6-YPP" secondAttribute="leading" id="WnL-Fl-qRR"/>
-                            <constraint firstItem="JWi-y5-NNC" firstAttribute="leading" secondItem="NlA-6G-i8X" secondAttribute="trailing" constant="8" symbolic="YES" id="Y6O-IT-YTJ"/>
-                            <constraint firstItem="mA1-W6-YPP" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="d9t-GX-1dS"/>
-                            <constraint firstItem="Dj9-xj-n9H" firstAttribute="trailing" secondItem="mA1-W6-YPP" secondAttribute="trailing" id="f92-7t-b8a"/>
-                            <constraint firstItem="JWi-y5-NNC" firstAttribute="centerY" secondItem="mA1-W6-YPP" secondAttribute="centerY" id="rzx-rZ-PaS"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="btnCalib" destination="MSc-cf-Hj5" id="D86-aA-VQD"/>
-                        <outlet property="btnCamera" destination="vZe-76-WmU" id="lKn-P0-9OP"/>
-                        <outlet property="btnPausePlay" destination="ZsB-0w-rt8" id="Ilv-JO-qI8"/>
-                        <outlet property="btnScale" destination="xIK-Pk-Igu" id="CQr-P3-Ysu"/>
-                        <outlet property="imageView1" destination="mA1-W6-YPP" id="A8j-qL-9xC"/>
-                        <outlet property="pickerView" destination="JWi-y5-NNC" id="py1-c8-03B"/>
-                        <outlet property="scaleLabel" destination="NlA-6G-i8X" id="d6Z-r1-KQO"/>
-                        <outlet property="scaleSubmit" destination="xWh-Uj-4RS" id="x9l-l7-eBb"/>
-                        <outlet property="scaleText" destination="NCl-Q5-TIz" id="9NK-5P-DlE"/>
-                        <outlet property="showPicker" destination="dXn-Ov-p8O" id="7x2-3p-Elv"/>
-                    </connections>
                 </viewController>
+                <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="eOH-kw-vMM">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8i-jy-jhz">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        </imageView>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="cRJ-WM-m6v">
+                            <rect key="frame" x="0.0" y="276" width="480" height="44"/>
+                            <items>
+                                <barButtonItem systemItem="play" id="eyx-3d-evC"/>
+                                <barButtonItem systemItem="camera" id="aVZ-b3-Wim"/>
+                                <barButtonItem title="Calib" id="pfA-Pv-P1I"/>
+                                <barButtonItem title="Scale" id="ZlN-X9-SPy"/>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="FvA-Ty-QWf"/>
+                                <barButtonItem title="End" id="zjA-L0-fcS"/>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="uYq-P7-jdJ"/>
+                                <barButtonItem title="Reset" id="KWL-Tq-KQp"/>
+                                <barButtonItem title="Axis" id="kE7-RS-la0"/>
+                            </items>
+                        </toolbar>
+                        <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSw-1M-5nd">
+                            <rect key="frame" x="275" y="113" width="205" height="162"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </pickerView>
+                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DoL-Bo-IEb">
+                            <rect key="frame" x="192" y="113" width="96" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1p-eF-uHm">
+                            <rect key="frame" x="192" y="197" width="97" height="30"/>
+                            <state key="normal" title="OK">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Size of Chess Square" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTO-cS-b2L">
+                            <rect key="frame" x="158" y="62" width="165" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="420" y="-49"/>
+            <point key="canvasLocation" x="-1292" y="-647"/>
         </scene>
         <!--Plot View Controller-->
         <scene sceneID="uGZ-fr-p8g">
             <objects>
                 <viewController id="GMo-Tb-v1J" customClass="plotViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ebs-DQ-dqB"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ve7-ZV-igf"/>
+                        <viewControllerLayoutGuide type="top" id="vZL-hV-kh1"/>
+                        <viewControllerLayoutGuide type="bottom" id="ANX-fn-mpc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7uC-OU-CAp">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOC-Q5-JSr" userLabel="plotPicker">
+                                <rect key="frame" x="156" y="79" width="167" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                            </pickerView>
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ehh-rN-d5G" customClass="CPTGraphHostingView">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="276"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -205,21 +217,14 @@
                                             <action selector="btnEmail:" destination="GMo-Tb-v1J" id="qTC-Ol-PX3"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A9i-MV-ZuL"/>
                                     <barButtonItem title="Axis" id="Cyj-XG-bix">
                                         <connections>
                                             <action selector="btnAxis:" destination="GMo-Tb-v1J" id="GC9-mO-u2P"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A9i-MV-ZuL"/>
                                 </items>
                             </toolbar>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOC-Q5-JSr" userLabel="plotPicker">
-                                <rect key="frame" x="156" y="79" width="167" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="">
-                                    <bool key="isElement" value="NO"/>
-                                </accessibility>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -239,7 +244,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="15" y="605"/>
+            <point key="canvasLocation" x="-1564" y="213"/>
         </scene>
     </scenes>
     <resources>

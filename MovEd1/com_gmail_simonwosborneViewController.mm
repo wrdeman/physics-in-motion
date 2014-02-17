@@ -39,6 +39,7 @@
 @synthesize scaleNum;
 @synthesize scaleNumChess;
 
+
 @synthesize videoCamera;
 @synthesize process;
 @synthesize newPoints;
@@ -161,6 +162,7 @@
  get action to start or stop the camera
  */
 - (IBAction)actionPausePlay:(id)sender {
+    NSLog(@"run = %d",self.runVideo);
     if (self.runVideo){
         [self.videoCamera stop];
         self.runVideo = FALSE;
@@ -275,8 +277,7 @@
  commented out for the time being
  */
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return UIInterfaceOrientationLandscapeLeft;
 }
 
@@ -285,23 +286,8 @@
 }
 
 -(BOOL) shouldAutorotate{
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
 
-    if (orientation==UIDeviceOrientationPortrait) {
-        [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationPortrait)];
-        NSLog(@"portrait");
-            
-    }
-    if (orientation==UIDeviceOrientationLandscapeLeft) {
-        NSLog(@"left");
-        [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationLandscapeRight)];
-    }
-    if (orientation==UIDeviceOrientationLandscapeRight) {
-        NSLog(@"right");
-        [self.videoCamera adjustLayoutToInterfaceOrientation:(UIInterfaceOrientationLandscapeLeft)];
-    }
- 
-        return YES;
+    return YES;
 }
 
 
@@ -383,7 +369,9 @@
     
     //set the imageview to accept gestures
     self.imageView1.userInteractionEnabled = YES;
-
+    self.imageView1.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    
     //tracking and plotting variables
     //default plot position
     self.plotModifierValue = 2;

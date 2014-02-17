@@ -50,6 +50,7 @@
     self.hostView.userInteractionEnabled = YES;
     
     axisPlotArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"dA/dt", @"Ø", @"dØ/dt", nil];
+    
     self.plotAxisx = 1;
     self.plotAxisy = 2;
     //array for data
@@ -237,7 +238,9 @@
     
     // Create the plot (we do not define actual x/y values yet, these will be supplied by the datasource...)
     CPTScatterPlot* plot = [[CPTScatterPlot alloc] initWithFrame:CGRectZero];
-        
+
+    
+    
     // Let's keep it simple and let this class act as data  source (therefore we implemtn <CPTPlotDataSource>)
     plot.dataSource = self;
         

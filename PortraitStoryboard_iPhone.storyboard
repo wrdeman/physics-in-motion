@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XSj-G3-liZ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="9c3-tm-9oI">
+            <objects>
+                <viewController id="XSj-G3-liZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T3c-Kf-yJr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lmh-KW-h29"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ab5-aw-o2e">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background_480x320.png" translatesAutoresizingMaskIntoConstraints="NO" id="bOn-W4-pQu">
+                                <rect key="frame" x="-74" y="160" width="480" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kbf-yt-iZX" appends="YES" id="BdM-5l-Kho"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4dq-pZ-Lz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kbf-yt-iZX">
+                    <connections>
+                        <segue destination="uK9-rH-cvs" kind="modal" id="ObE-Bd-dBZ"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1278" y="-405"/>
+        </scene>
+        <!--Com gmail simonwosborne View Controller-->
+        <scene sceneID="cqZ-2I-7K9">
+            <objects>
+                <viewController id="uK9-rH-cvs" customClass="com_gmail_simonwosborneViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sVL-dn-zv8"/>
+                        <viewControllerLayoutGuide type="bottom" id="67Z-Zk-fvs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Nj-DG-MHj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZw-yo-Am5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCF-B7-CeS">
+                                <rect key="frame" x="0.0" y="436" width="480" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="play" id="CEC-ge-W41">
+                                        <connections>
+                                            <action selector="actionPausePlay:" destination="uK9-rH-cvs" id="cgr-fJ-dld"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="camera" id="mlx-0L-LvF">
+                                        <connections>
+                                            <action selector="actionCamera:" destination="uK9-rH-cvs" id="vds-n4-Xdw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Calib" id="1nN-88-tce">
+                                        <connections>
+                                            <action selector="calibCamera:" destination="uK9-rH-cvs" id="Q7B-gM-RlV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Scale" id="EgM-p0-Zir">
+                                        <connections>
+                                            <action selector="scale:" destination="uK9-rH-cvs" id="PhN-dL-a2p"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="End" id="5kz-Pg-Yir">
+                                        <connections>
+                                            <action selector="finish:" destination="uK9-rH-cvs" id="cps-jJ-GVN"/>
+                                            <segue destination="nHW-yy-bDN" kind="modal" id="PWf-58-a2s"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Reset" id="sgq-gy-CXx">
+                                        <connections>
+                                            <action selector="resetArray:" destination="uK9-rH-cvs" id="1O6-fl-MXF"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Axis" id="mG3-rJ-rjF">
+                                        <connections>
+                                            <action selector="showPicker:" destination="uK9-rH-cvs" id="agx-UM-ow1"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jUA-Va-i5y">
+                                <rect key="frame" x="112" y="274" width="205" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </pickerView>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exe-jR-d5G">
+                                <rect key="frame" x="112" y="127" width="96" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nn3-g9-oKh">
+                                <rect key="frame" x="112" y="205" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scaleSubmit:" destination="uK9-rH-cvs" eventType="touchUpInside" id="yZ3-8t-kHd"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Size of Chess Square" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STb-14-aO9">
+                                <rect key="frame" x="78" y="69" width="165" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="btnCalib" destination="1nN-88-tce" id="WL6-dL-cIW"/>
+                        <outlet property="btnCamera" destination="mlx-0L-LvF" id="ozI-Qb-umA"/>
+                        <outlet property="btnPausePlay" destination="CEC-ge-W41" id="4q0-YC-ZP0"/>
+                        <outlet property="btnScale" destination="EgM-p0-Zir" id="XCX-ov-nlW"/>
+                        <outlet property="imageView1" destination="XZw-yo-Am5" id="nmf-7O-wZQ"/>
+                        <outlet property="pickerView" destination="jUA-Va-i5y" id="vKn-dN-g0d"/>
+                        <outlet property="scaleLabel" destination="STb-14-aO9" id="HCd-jq-xMl"/>
+                        <outlet property="scaleSubmit" destination="nn3-g9-oKh" id="Mcu-JB-fQo"/>
+                        <outlet property="scaleText" destination="exe-jR-d5G" id="LJj-uG-vHz"/>
+                        <outlet property="showPicker" destination="mG3-rJ-rjF" id="9lW-cJ-3qk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B4f-6i-9Cd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="314" y="-368"/>
+        </scene>
+        <!--Plot View Controller-->
+        <scene sceneID="vvx-8B-FZe">
+            <objects>
+                <viewController id="nHW-yy-bDN" customClass="plotViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tnj-FP-Rz3"/>
+                        <viewControllerLayoutGuide type="bottom" id="xIr-AI-SDX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PwG-6p-XfX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jU6-Wd-bzS" userLabel="plotPicker">
+                                <rect key="frame" x="-80" y="159" width="480" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                            </pickerView>
+                            <view multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEa-7h-wSV" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="hostView"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dIY-VU-9pT" appends="YES" id="tBJ-ER-FSd"/>
+                                </connections>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cKk-tB-k3I">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Email" id="oce-f0-oRy">
+                                        <connections>
+                                            <action selector="btnEmail:" destination="nHW-yy-bDN" id="aBv-am-bF3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hkR-Rl-2fe"/>
+                                    <barButtonItem title="Axis" id="Gtm-nM-g73">
+                                        <connections>
+                                            <action selector="btnAxis:" destination="nHW-yy-bDN" id="YIK-rb-3pO"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="btnAxis" destination="Gtm-nM-g73" id="Fz3-cQ-EsN"/>
+                        <outlet property="btnEmail" destination="oce-f0-oRy" id="i2Y-kM-xb9"/>
+                        <outlet property="hostView" destination="tEa-7h-wSV" id="50E-1z-4i7"/>
+                        <outlet property="plotPicker" destination="jU6-Wd-bzS" id="haG-R1-jod"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="viB-8l-LOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="dIY-VU-9pT">
+                    <connections>
+                        <segue destination="XSj-G3-liZ" kind="modal" id="FAA-SZ-U0b"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-541" y="856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background_480x320.png" width="480" height="320"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
