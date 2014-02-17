@@ -24,6 +24,7 @@
 }
 - (IBAction)btnEmail:(id)sender;
 - (IBAction)btnAxis:(id)sender;
+- (IBAction)showplotPicker:(id)sender;
 
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnAxis;

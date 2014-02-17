@@ -45,6 +45,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cG8-26-BiU"/>
+                                    <barButtonItem title="Item" id="aQZ-P2-p3h" userLabel="Bar Button Item - Help">
+                                        <connections>
+                                            <segue destination="dUC-zH-XGz" kind="modal" id="xfS-4y-gco"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e0N-0K-n7h"/>
                                     <barButtonItem title="Finish" id="3CY-fS-bAO">
                                         <connections>
                                             <action selector="finish:" destination="2" id="U1p-el-RCP"/>
@@ -139,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1058" y="-2744"/>
+            <point key="canvasLocation" x="-106" y="-2776"/>
         </scene>
         <!--Plot View Controller-->
         <scene sceneID="78C-4D-nCl">
@@ -153,10 +159,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0q-Xb-4cm" userLabel="plotPicker">
-                                <rect key="frame" x="156" y="182" width="713" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                             <view multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lO0-BI-2ur" customClass="CPTGraphHostingView">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="723"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -164,6 +166,11 @@
                                 <accessibility key="accessibilityConfiguration" label="hostView"/>
                                 <gestureRecognizers/>
                             </view>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0q-Xb-4cm" userLabel="plotPicker">
+                                <rect key="frame" x="156" y="182" width="713" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofQ-a2-68S">
                                 <rect key="frame" x="0.0" y="723" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -176,7 +183,13 @@
                                     <barButtonItem width="107" style="plain" systemItem="fixedSpace" id="KQ3-bo-fOU"/>
                                     <barButtonItem title="Axis" id="usX-Bo-dxf">
                                         <connections>
-                                            <action selector="btnAxis:" destination="EpO-V0-bpn" id="obW-oK-A0T"/>
+                                            <action selector="showplotPicker:" destination="EpO-V0-bpn" id="pxX-zI-pBU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="179" style="plain" systemItem="fixedSpace" id="IcE-kz-7Rw"/>
+                                    <barButtonItem title="Quit" id="lQs-2T-8ye">
+                                        <connections>
+                                            <segue destination="2" kind="modal" id="mmI-zo-KSo"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -195,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TIY-rT-arP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="180" y="-2007"/>
+            <point key="canvasLocation" x="-100" y="-1319"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bEe-M4-8Tb">
@@ -249,4 +262,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="zfZ-7u-p9R"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -136,7 +136,7 @@ void CVPlotting::setPlotPoints(double time){
 }
 
 /*
-reset all the plotte points
+reset all the plot points
 */
 void CVPlotting::resetPlotPoints(){
     CVPlotting::plotPoints.clear();

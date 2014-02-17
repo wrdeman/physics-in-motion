@@ -25,6 +25,14 @@
 @synthesize plotAxisy;
 @synthesize hostView = hostView_;
 
+/*!
+ get action to display the plotPicker that enables the axis to be selected
+ */
+- (IBAction)showplotPicker:(id)sender {
+    if (self.plotPicker) self.plotPicker.hidden = !self.plotPicker.hidden;
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,7 +57,7 @@
     
     self.hostView.userInteractionEnabled = YES;
     
-    axisPlotArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"dA/dt", @"Ø", @"dØ/dt", nil];
+    axisPlotArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"\u03B4A/\u03B4t", @"\u03D1", @"\u03B4\u03D1/\u03B4t", nil];
     
     self.plotAxisx = 1;
     self.plotAxisy = 2;
@@ -218,16 +226,41 @@
 
     // Create graph from theme
     graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
-    CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+    graph.plotAreaFrame.masksToBorder = NO;
+    
+    CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
     [graph applyTheme:theme];
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.hostView;
     // hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
     hostingView.hostedGraph  = graph;
     
-    graph.paddingLeft   = 10.0;
-    graph.paddingTop    = 10.0;
-    graph.paddingRight  = 10.0;
-    graph.paddingBottom = 10.0;
+    //style for annotation
+    CPTMutableTextStyle *titleStyle = [CPTMutableTextStyle textStyle];
+    titleStyle.color = [CPTColor whiteColor];
+    titleStyle.fontName = @"Helvetica-Bold";
+    titleStyle.fontSize = 16.0f;
+    NSString *title = [NSString stringWithFormat:@"Graph of %@ versus %@",
+                       axisPlotArray[self.plotAxisx],
+                       axisPlotArray[self.plotAxisy]];
+    
+    graph.title = title;
+    graph.titleTextStyle = titleStyle;
+    graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
+    graph.titleDisplacement = CGPointMake(0.0f, -16.0f);
+    
+    // Grid line styles
+    CPTMutableLineStyle *majorGridLineStyle = [CPTMutableLineStyle lineStyle];
+    majorGridLineStyle.lineWidth = 0.75;
+    majorGridLineStyle.lineColor = [[CPTColor greenColor] colorWithAlphaComponent:0.65];
+    
+    CPTMutableLineStyle *minorGridLineStyle = [CPTMutableLineStyle lineStyle];
+    minorGridLineStyle.lineWidth = 0.25;
+    minorGridLineStyle.lineColor = [[CPTColor greenColor] colorWithAlphaComponent:0.3];
+    
+    CPTMutableLineStyle *plottedLine = [CPTMutableLineStyle lineStyle];
+    plottedLine.lineWidth = 0.75;
+    plottedLine.lineColor = [[CPTColor blueColor] colorWithAlphaComponent:1];
+    
     
     // Get the (default) plotspace from the graph so we can set its x/y ranges
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
@@ -239,10 +272,53 @@
     // Create the plot (we do not define actual x/y values yet, these will be supplied by the datasource...)
     CPTScatterPlot* plot = [[CPTScatterPlot alloc] initWithFrame:CGRectZero];
 
+    //try adding axis labels
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
+    CPTXYAxis *y = axisSet.yAxis;
     
+    y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+    y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"1.0");
+    y.minorTicksPerInterval = 2;
+    y.preferredNumberOfMajorTicks = 8;
+    y.minorTickLength = 15.0f;
+    y.majorTickLength = 17.0f;
+    y.majorGridLineStyle = majorGridLineStyle;
+    y.minorGridLineStyle = minorGridLineStyle;
+    y.labelOffset = 0.0;
+
+    
+    y.title = axisPlotArray[self.plotAxisy];
+    y.titleOffset = 0.0f;
+    y.titleLocation = plotSpace.yRange.midPoint;
+    
+    
+    /***************************************************/
+    CPTXYAxis *x = axisSet.xAxis;
+    
+    x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+    x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"1.0");
+    x.minorTicksPerInterval = 2;
+    x.preferredNumberOfMajorTicks = 8;
+    x.minorTickLength = 5.0f;
+    x.majorTickLength = 7.0f;
+    x.majorGridLineStyle = majorGridLineStyle;
+    x.minorGridLineStyle = minorGridLineStyle;
+    x.labelOffset = 10.0;
+    
+    x.title = axisPlotArray[self.plotAxisx];
+    x.titleOffset = 0.0f;
+    x.titleLocation = plotSpace.xRange.midPoint;
+    
+    graph.axisSet.axes = [NSArray arrayWithObjects:x, y, nil];
+    
+    graph.paddingLeft   = 80.0;
+    graph.paddingTop    = 80.0;
+    graph.paddingRight  = 80.0;
+    graph.paddingBottom = 80.0;
     
     // Let's keep it simple and let this class act as data  source (therefore we implemtn <CPTPlotDataSource>)
     plot.dataSource = self;
+    plot.dataLineStyle = plottedLine;
         
     // Finally, add the created plot to the default plot space of the CPTGraph object we created before
     [graph addPlot:plot toPlotSpace:graph.defaultPlotSpace];

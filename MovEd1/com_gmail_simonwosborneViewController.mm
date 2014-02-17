@@ -362,7 +362,7 @@
     self.videoCamera.delegate=self;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
-    [self.videoCamera.captureVideoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
+    [self.videoCamera.captureVideoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
     self.videoCamera.defaultFPS = FPS;
     self.videoCamera.grayscaleMode = NO;
     
@@ -381,7 +381,7 @@
     //default flags and counters
     self.newPoints = false;
     self.newOrigin = false;
-    axisArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"dA/dt", @"Ø", @"dØ/dt", nil];
+    axisArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"\u03B4A/\u03B4t", @"\u03D1", @"\u03B4\u03D1/\u03B4t", nil];
     self.axisx = 1;
     self.axisy = 2;
     self.calibCameraCount = 0;
