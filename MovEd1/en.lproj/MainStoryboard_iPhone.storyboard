@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" image="background_480x320.png" translatesAutoresizingMaskIntoConstraints="NO" id="shJ-3e-YBd">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" image="background1.png" translatesAutoresizingMaskIntoConstraints="NO" id="shJ-3e-YBd">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
@@ -76,6 +76,11 @@
                                     <barButtonItem title="Scale" id="jk3-WZ-mFV">
                                         <connections>
                                             <action selector="scale:" destination="2" id="Pcj-ug-zKN"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Help" id="qK6-h4-LhG">
+                                        <connections>
+                                            <segue destination="49e-DY-OHc" kind="modal" id="GO4-bC-EM1"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3XF-gc-gSc"/>
@@ -248,11 +253,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background_480x320.png" width="480" height="320"/>
+        <image name="background1.png" width="480" height="320"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="GO4-bC-EM1"/>
+    </inferredMetricsTieBreakers>
 </document>

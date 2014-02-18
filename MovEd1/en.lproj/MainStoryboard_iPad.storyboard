@@ -45,7 +45,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cG8-26-BiU"/>
-                                    <barButtonItem title="Item" id="aQZ-P2-p3h" userLabel="Bar Button Item - Help">
+                                    <barButtonItem title="Help" id="aQZ-P2-p3h" userLabel="Bar Button Item - Help">
                                         <connections>
                                             <segue destination="dUC-zH-XGz" kind="modal" id="xfS-4y-gco"/>
                                         </connections>
@@ -222,7 +222,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="background_1024x768.png" translatesAutoresizingMaskIntoConstraints="NO" id="kCy-p4-BEn" colorLabel="IBBuiltInLabel-Red">
+                            <imageView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="kCy-p4-BEn" colorLabel="IBBuiltInLabel-Red">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="706"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -255,7 +255,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background_1024x768.png" width="1024" height="768"/>
+        <image name="background.png" width="1024" height="768"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

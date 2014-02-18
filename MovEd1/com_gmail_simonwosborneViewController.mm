@@ -85,6 +85,7 @@
         self.process->cvOrigin(x,y,(int)self.imageView1.bounds.size.width, (int)self.imageView1.bounds.size.height);
         //declare new points
         self.newOrigin=true;
+        [self.pickerView reloadAllComponents];
     }
 }
 /*!
@@ -320,24 +321,10 @@
     }
 }
 
-/*!
- this switches the orientation 
- commented out for the time being
- */
-
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
-//    return UIInterfaceOrientationLandscapeLeft;
-//}
-
-//- (NSUInteger)supportedInterfaceOrientations {
-//    return UIInterfaceOrientationMaskAllButUpsideDown;
-//}
-
 -(BOOL) shouldAutorotate{
 
     return YES;
 }
-
 
 
 - (void)viewDidLoad

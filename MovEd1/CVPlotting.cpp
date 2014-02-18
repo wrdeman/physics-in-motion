@@ -343,14 +343,20 @@ std::string CVPlotting::outputData(float scaleNum, float scaleNumChess, float ti
     }
     
     std::ostringstream s;
-    int size = NUM_PLOT;
-    if (CVProcessing::origin2f.empty()){
-        size = 3;
+    int size=3;
+
+    for (int i = 0; i < CVPlotting::plotPoints.size(); i++){
+        if (CVPlotting::plotPoints[i][4] == 0 && CVPlotting::plotPoints[i][5] == 0){
+            size = 7;
+        }
+    }
+    if (size == 3){
         s<<"t \t x \t y \t"<<std::endl;
     }
     else{
         s<<"t \t x \t y \t A \t dA \t Th \t dTh \t"<<std::endl;
-            }
+    }
+    
     for (int i = 0; i < CVPlotting::plotPoints.size(); i++){
         s << CVPlotting::plotPoints[i][0] << "\t";
         for (int j = 1; j < size; j++){
@@ -393,7 +399,7 @@ std::vector<std::vector<float> > CVPlotting::outputPlotData(float scaleNum, floa
     
     int size = NUM_PLOT;
     if (CVProcessing::origin2f.empty()){
-        size = 3;
+        size = 7;
     }
     for (int i = 0; i < CVPlotting::plotPoints.size(); i++){
         std::vector<float> inner;

@@ -52,7 +52,7 @@
     //    self.plotPicker.dataSource = self;
 //    self.plotPicker.delegate = self;
     [super viewDidLoad];
-
+    self.newOrigin = true;
     //-----------------tap gestures------------------------------
     
     self.hostView.userInteractionEnabled = YES;
@@ -156,7 +156,6 @@
 #pragma mark -
 #pragma mark PickerView Delegate
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    NSLog(@"row = %d",row);
     if (component == plotxaxis){
         self.plotAxisx = row;
     }
@@ -175,12 +174,21 @@
     float xmax, xmin, ymin, ymax;
     
     std::vector<std::vector<float> > array = process->outputPlotData(self.scaleNum,self.scaleNumChess,(1./FPS));
-
+    
     int sizeInner = 0;
     int sizeOuter = array.size();
     if (sizeOuter != 0){
         sizeInner = array[0].size();
     }
+    NSLog(@"innder = %d",sizeInner);
+    if (sizeInner > 3){
+        self.newOrigin = true;
+    }
+    else{
+        self.newOrigin = false;
+    }
+    [self.pickerView reloadAllComponents];
+
     
     xmax = array[0][self.plotAxisx];
     xmin = array[0][self.plotAxisx];
