@@ -169,54 +169,103 @@ void CVPlotting::plotData(cv::Mat image, int plotPosition, int xaxis, int yaxis,
     float dy = (yy2*0.9);
     
     float xp,yp;
-    
-    //----get plot position---------
-    if (plotPosition%2==0){
-        xp=0;
-        if (plotPosition>3){
-            //4
-            yp = -dy+sizeToolbarHeight;
-        }
-        else{
+    if (plotPosition == 1){
+        // this is for position 1
+        xp=dx;
+        if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
             yp = 0+sizeToolbarHeight;
+        }
+        else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight){
+            yp = -dy;
         }
     }
-    else{
-        //1 or 3
+    else if (plotPosition == 2){
+        // this is for position 2
+        xp=0;
+        if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+            yp = 0+sizeToolbarHeight;
+        }
+        else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight){
+            yp = -dy;
+        }
+    }
+    else if (plotPosition == 3){
         xp=dx;
-        if (plotPosition>1){
-            //1
+        if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
             yp = -dy+sizeToolbarHeight;
         }
-        else{
-            yp = 0+sizeToolbarHeight;
+        else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight){
+            yp = 0-sizeToolbarHeight*0.5; //got through expt
+        }
+    }
+    else if (plotPosition == 4){
+        xp=0;
+        if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+            yp = -dy+sizeToolbarHeight;
+        }
+        else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight){
+            yp = 0-sizeToolbarHeight*0.5;
         }
     }
     //-----------------------------
-    //y-axis
-    cv::line(image,
-             (cv::Point(xx2+xp,yy2+(yy2*0.9)+yp)),
-             cv::Point(xx2+xp,yy2+yp),
-             cv::Scalar(255,0,0),
-             1);
     
-    //x-axis
-    // i want the x axis to intercept the y at x=0
-    if (CVPlotting::minPoints[yaxis]*CVPlotting::maxPoints[yaxis] > 0){
+    
+    
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
+    {
+        //y-axis
         cv::line(image,
+                 (cv::Point(xx2+xp,yy2+(yy2*0.9)+yp)),
                  cv::Point(xx2+xp,yy2+yp),
-                 cv::Point((xx2*0.1)+xp,yy2+yp),
                  cv::Scalar(255,0,0),
                  1);
+        //x-axis
+        // i want the x axis to intercept the y at x=0
+        if (CVPlotting::minPoints[yaxis]*CVPlotting::maxPoints[yaxis] > 0){
+            cv::line(image,
+                     cv::Point(xx2+xp,yy2+yp),
+                     cv::Point((xx2*0.1)+xp,yy2+yp),
+                     cv::Scalar(255,0,0),
+                     1);
+        }
+        else{
+            float adYInt = float(yy2 - dy*abs(CVPlotting::minPoints[yaxis]/(CVPlotting::maxPoints[yaxis]-CVPlotting::minPoints[yaxis])));
+            cv::line(image,
+                     cv::Point(xx2,adYInt+yp),
+                     cv::Point((xx2*0.1)+xp,adYInt+yp),
+                     cv::Scalar(255,0,0),
+                     1);
+        }
     }
-    else{
-        float adYInt = float(yy2 - dy*abs(CVPlotting::minPoints[yaxis]/(CVPlotting::maxPoints[yaxis]-CVPlotting::minPoints[yaxis])));
+    else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+    {
+        //y-axis x point
         cv::line(image,
-                 cv::Point(xx2,adYInt+yp),
-                 cv::Point((xx2*0.1)+xp,adYInt+yp),
+                 (cv::Point(xx2*0.1+xp,yy2+(yy2*0.9)+yp)),
+                 cv::Point(xx2*0.1+xp,yy2+yp),
                  cv::Scalar(255,0,0),
                  1);
+        //x-axis
+        // i want the x axis to intercept the y at x=0
+        if (CVPlotting::minPoints[yaxis]*CVPlotting::maxPoints[yaxis] > 0){
+            cv::line(image,
+                     cv::Point(xx2+xp,yy2+(yy2*0.9)+yp),
+                     cv::Point((xx2*0.1)+xp,yy2+(yy2*0.9)+yp),
+                     cv::Scalar(255,0,0),
+                     1);
+        }
+        else{
+            float adYInt = float(yy2 - dy*abs(CVPlotting::minPoints[yaxis]/(CVPlotting::maxPoints[yaxis]-CVPlotting::minPoints[yaxis])));
+            cv::line(image,
+                     cv::Point(xx2,adYInt+yp+(yy2*0.9)),
+                     cv::Point((xx2*0.1)+xp,adYInt+(yy2*0.9)+yp),
+                     cv::Scalar(255,0,0),
+                     1);
+        }
     }
+
+    
+    
     
     if (CVPlotting::plotPoints.size() > 1){
         for (int i_graph = 0; i_graph < CVPlotting::plotPoints.size()-1; i_graph++){

@@ -56,7 +56,7 @@
     //-----------------tap gestures------------------------------
     
     self.hostView.userInteractionEnabled = YES;
-    
+    axisPlotArrayNoOrigin = [NSArray arrayWithObjects:@"time", @"x", @"y", nil];
     axisPlotArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"\u03B4A/\u03B4t", @"\u03D1", @"\u03B4\u03D1/\u03B4t", nil];
     
     self.plotAxisx = 1;
@@ -134,13 +134,23 @@
 }
 //both the same length
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return [axisPlotArray count];
+    if (self.newOrigin){
+        return [axisPlotArray count];
+    }
+    else{
+        return [axisPlotArrayNoOrigin count];
+    }
 }
 
 -(NSString *)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    if (component == plotxaxis)
+//    if (component == plotxaxis)
+//        return [axisPlotArray objectAtIndex:row];
+    if (self.newOrigin){
         return [axisPlotArray objectAtIndex:row];
-    return [axisPlotArray objectAtIndex:row];
+    }
+    else{
+        return [axisPlotArrayNoOrigin objectAtIndex:row];
+    }
 }
 
 #pragma mark -

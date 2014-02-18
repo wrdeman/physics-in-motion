@@ -112,41 +112,89 @@
 /*!
  returns an integer 1,2,3,4 which informs CVPlotting where to plot the graph
  triggered from swipe gestures
+ these will be different for the orientations
  */
 -(void) plotModifier:(UISwipeGestureRecognizer *)gesture
 {
 /*  get the gesture and assign a value
-    positions of plot are
+    positions of plot are for left
     -----
     |1|2|
     -----
     |3|4|
     -----
+ and right
+ 
+ -----
+ |2|1|
+ -----
+ |4|2|
+ -----
+ 
+ 
 */
-    if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
+    
+    
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
     {
-        if (self.plotModifierValue%2 == 0){
-            self.plotModifierValue -= 1;
+        if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
+        {
+            if (self.plotModifierValue%2 == 0){
+                self.plotModifierValue -= 1;
+            }
+        }
+        else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
+        {
+            if (self.plotModifierValue%2 == 1){
+                self.plotModifierValue += 1;
+            }
+        }
+        else if (gesture.direction == UISwipeGestureRecognizerDirectionUp)
+        {
+            if (self.plotModifierValue >=3){
+                self.plotModifierValue -= 2;
+            }
+        }
+        else if (gesture.direction == UISwipeGestureRecognizerDirectionDown)
+        {
+            if (self.plotModifierValue <=2){
+                self.plotModifierValue += 2;
+            }
         }
     }
-    else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
+    else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
     {
-        if (self.plotModifierValue%2 == 1){
-            self.plotModifierValue += 1;
+        
+        if (gesture.direction == UISwipeGestureRecognizerDirectionDown)
+        {
+            if (self.plotModifierValue <= 2){
+                self.plotModifierValue += 2;
+            }
         }
-    }
-    if (gesture.direction == UISwipeGestureRecognizerDirectionUp)
-    {
-        if (self.plotModifierValue >=3){
-            self.plotModifierValue -= 2;
+        else if (gesture.direction == UISwipeGestureRecognizerDirectionUp)
+        {
+            if (self.plotModifierValue >= 3){
+                self.plotModifierValue -= 2;
+            }
         }
-    }
-    else if (gesture.direction == UISwipeGestureRecognizerDirectionDown)
-    {
-        if (self.plotModifierValue <=2){
-            self.plotModifierValue += 2;
+        else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
+        {
+            if (self.plotModifierValue%2 == 0){
+                self.plotModifierValue -= 1;
+            }
         }
+        else if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
+        {
+            if (self.plotModifierValue %2 != 0){
+                self.plotModifierValue += 1;
+            }
+        }
+       
+        
+    
     }
+    
+    
 }
 
 
@@ -277,13 +325,13 @@
  commented out for the time being
  */
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
-    return UIInterfaceOrientationLandscapeLeft;
-}
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+//    return UIInterfaceOrientationLandscapeLeft;
+//}
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-}
+//- (NSUInteger)supportedInterfaceOrientations {
+//    return UIInterfaceOrientationMaskAllButUpsideDown;
+//}
 
 -(BOOL) shouldAutorotate{
 
@@ -382,6 +430,8 @@
     self.newPoints = false;
     self.newOrigin = false;
     axisArray = [NSArray arrayWithObjects:@"time", @"x", @"y", @"A", @"\u03B4A/\u03B4t", @"\u03D1", @"\u03B4\u03D1/\u03B4t", nil];
+    //very lazy!
+    axisArrayNoOrigin = [NSArray arrayWithObjects:@"time", @"x", @"y", nil];
     self.axisx = 1;
     self.axisy = 2;
     self.calibCameraCount = 0;
@@ -420,13 +470,23 @@
 }
 //both the same length
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return [axisArray count];
+    if (self.newOrigin){
+        return [axisArray count];
+    }
+    else{
+         return [axisArrayNoOrigin count];
+    }
 }
 
 -(NSString *)pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    if (component == kxaxis)
+//    if (component == kxaxis)
+//        return [axisArray objectAtIndex:row];
+    if (self.newOrigin){
         return [axisArray objectAtIndex:row];
-    return [axisArray objectAtIndex:row];
+    }
+    else{
+         return [axisArrayNoOrigin objectAtIndex:row];
+    }
 }
 
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
@@ -484,7 +544,8 @@
         self.process->setPlotPoints(self.time-time_old);
         //fraction of available screen 44 is the height
         //according to the storyboard for ipad and iphone
-        float availableScreen= 1. - (44./self.imageView1.bounds.size.height);
+        float availableScreen = 1. - (44./self.imageView1.bounds.size.height);
+        
         self.process->plotData(image,self.plotModifierValue, self.axisx, self.axisy, availableScreen);
     }
     

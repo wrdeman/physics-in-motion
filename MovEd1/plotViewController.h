@@ -13,6 +13,7 @@
 
 @interface plotViewController : com_gmail_simonwosborneViewController<UIPickerViewDelegate,UIPickerViewDataSource,MFMailComposeViewControllerDelegate,CPTPlotDataSource>{
     NSArray *axisPlotArray;
+    NSArray *axisPlotArrayNoOrigin;
     IBOutlet UIBarButtonItem * btnEmail;
     IBOutlet UIBarButtonItem * btnAxis;
 //    IBOutlet UIPickerView * plotPicker;

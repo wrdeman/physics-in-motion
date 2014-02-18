@@ -23,6 +23,7 @@ using namespace cv;
 {
     CvVideoCamera* videoCamera;
     NSArray *axisArray;
+    NSArray *axisArrayNoOrigin;
     IBOutlet UIImageView *imageView1;
     IBOutlet UIBarButtonItem *btnPausePlay;
     IBOutlet UIBarButtonItem *btnCamera;
