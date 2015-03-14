@@ -1,0 +1,1 @@
+A motion tracking app for iOS that is intended to be used for simple motion based physics experiments e.g. a  simple pendulum and simple harmonic motion. This program uses opencv to do the tracking.
